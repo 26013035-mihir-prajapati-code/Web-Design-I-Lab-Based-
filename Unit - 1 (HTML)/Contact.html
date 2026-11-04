@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+</head>
+<body>
+
+    <h2>Contact Us</h2>
+
+    <form action="#" method="POST">
+        <!-- Name -->
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required placeholder="Enter your full name" pattern="[A-Za-z\s]+"><br><br>
+
+        <!-- Email -->
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required placeholder="example@domain.com"><br><br>
+
+        <!-- Mobile Number -->
+        <label for="mobile">Mobile Number:</label><br>
+        <input type="tel" id="mobile" name="mobile" required placeholder="10-digit mobile number" pattern="[0-9]{10}"><br><br>
+
+        <!-- Subject -->
+        <label for="subject">Subject:</label><br>
+        <input type="text" id="subject" name="subject" required placeholder="Enter subject"><br><br>
+
+        <!-- Message -->
+        <label for="message">Message:</label><br>
+        <textarea id="message" name="message" required placeholder="Write your message here..."></textarea><br><br>
+
+        <!-- Buttons -->
+        <input type="submit" value="Submit">
+        <input type="reset" value="Reset">
+    </form>
+
+</body>
+</html>
