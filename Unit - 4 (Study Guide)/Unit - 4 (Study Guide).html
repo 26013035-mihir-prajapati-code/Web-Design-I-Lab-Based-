@@ -1,0 +1,2725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Unit 4: Modern Web Development Tools - Master Study Guide</title>
+  <style>
+
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: #1e293b;
+      background-color: #ffffff;
+      line-height: 1.48;
+      font-size: 13.5px;
+    }
+
+    .page {
+      width: 210mm;
+      height: 297mm;
+      max-height: 297mm;
+      box-sizing: border-box;
+      padding: 11mm 14mm 10mm 14mm;
+      margin: 0 auto;
+      background: #ffffff;
+      page-break-after: always;
+      break-after: page;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      overflow: hidden;
+    }
+
+    .page:last-child {
+      page-break-after: avoid;
+      break-after: avoid;
+    }
+
+    /* Running Header */
+    .running-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 5px;
+      margin-bottom: 8px;
+      border-bottom: 2px solid #e2e8f0;
+      font-size: 11px;
+      color: #64748b;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .running-header .brand {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #2563eb;
+      font-weight: 800;
+      font-size: 12px;
+    }
+    .running-header .brand svg {
+      width: 16px;
+      height: 16px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2.2;
+    }
+
+    /* Running Footer */
+    .running-footer {
+      margin-top: auto;
+      padding-top: 5px;
+      border-top: 1.5px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 10.5px;
+      color: #64748b;
+      font-weight: 600;
+    }
+    .running-footer .tag-pill {
+      background: #f1f5f9;
+      color: #475569;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-weight: 600;
+      border: 1px solid #cbd5e1;
+    }
+
+    /* Typography */
+    .unit-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      color: #2563eb;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 3px;
+    }
+    .section-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.25;
+      margin-bottom: 6px;
+      letter-spacing: -0.3px;
+    }
+    .subsection-title {
+      font-size: 14.5px;
+      font-weight: 800;
+      color: #1e293b;
+      margin: 6px 0 4px 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Badges & Pills */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+    }
+    .badge-primary { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+    .badge-emerald { background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; }
+    .badge-amber { background: #fffbeb; color: #b45309; border: 1px solid #fde68a; }
+    .badge-purple { background: #faf5ff; color: #6d28d9; border: 1px solid #e9d5ff; }
+    .badge-rose { background: #fff1f2; color: #be123c; border: 1px solid #fecdd3; }
+
+    /* Cards */
+    .card {
+      background: #ffffff;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 9px 12px;
+      margin-bottom: 7px;
+    }
+    .card-tinted { background: #f8fafc; border-color: #cbd5e1; }
+    .card-blue { background: #f0f7ff; border-color: #bfdbfe; }
+    .card-emerald { background: #f0fdf4; border-color: #bbf7d0; }
+    .card-amber { background: #fffbeb; border-color: #fde68a; }
+    .card-rose { background: #fff1f2; border-color: #fecdd3; }
+    .card-purple { background: #faf5ff; border-color: #e9d5ff; }
+
+    /* Quotes and Definitions */
+    .definition-box {
+      border-left: 4.5px solid #2563eb;
+      background: #eff6ff;
+      padding: 7px 11px;
+      border-radius: 0 7px 7px 0;
+      margin: 6px 0;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #1d4ed8;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    /* Grids */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 7px;
+      margin-bottom: 6px;
+    }
+    .grid-4 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+
+    /* Code Blocks */
+    .code-container {
+      background: #0f172a;
+      border-radius: 7px;
+      overflow: hidden;
+      margin: 5px 0 7px 0;
+      border: 1px solid #1e293b;
+    }
+    .code-header {
+      background: #1e293b;
+      padding: 3px 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'JetBrains Mono', 'Consolas', monospace;
+      font-size: 10px;
+      color: #94a3b8;
+    }
+    .code-dots { display: flex; gap: 4px; }
+    .code-dot { width: 7px; height: 7px; border-radius: 50%; }
+    .dot-red { background: #ef4444; }
+    .dot-yellow { background: #f59e0b; }
+    .dot-green { background: #10b981; }
+    pre {
+      padding: 7px 10px;
+      font-family: 'JetBrains Mono', 'Consolas', monospace;
+      font-size: 11.8px;
+      line-height: 1.44;
+      color: #f8fafc;
+      overflow-x: hidden;
+      white-space: pre-wrap;
+    }
+    .kw { color: #f43f5e; font-weight: 600; }
+    .fn { color: #38bdf8; font-weight: 600; }
+    .prop { color: #38bdf8; }
+    .val { color: #a3e635; }
+    .str { color: #a3e635; }
+    .num { color: #fbbf24; }
+    .comment { color: #64748b; font-style: italic; }
+    .tag { color: #f43f5e; font-weight: 600; }
+    .attr { color: #38bdf8; }
+    .punct { color: #94a3b8; }
+    .cmd { color: #34d399; font-weight: 600; }
+
+    /* Tables */
+    table.custom-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 6px 0;
+      border-radius: 7px;
+      overflow: hidden;
+      border: 1.5px solid #cbd5e1;
+    }
+    table.custom-table th {
+      background: #1e293b;
+      color: #ffffff;
+      padding: 6px 9px;
+      font-size: 12px;
+      font-weight: 700;
+      text-align: left;
+    }
+    table.custom-table td {
+      padding: 5.5px 9px;
+      font-size: 12px;
+      border-top: 1px solid #e2e8f0;
+      color: #334155;
+      background: #ffffff;
+      vertical-align: top;
+    }
+    table.custom-table tr:nth-child(even) td { background: #f8fafc; }
+    table.custom-table code {
+      background: #e2e8f0;
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', 'Consolas', monospace;
+      font-size: 11.5px;
+      color: #0f172a;
+      font-weight: 600;
+    }
+
+    /* Lists */
+    ul.bullet-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 4px 0 6px 0;
+    }
+    ul.bullet-list li {
+      position: relative;
+      padding-left: 17px;
+      margin-bottom: 3.5px;
+      font-size: 13px;
+      color: #334155;
+      line-height: 1.45;
+    }
+    ul.bullet-list li::before {
+      content: "•";
+      position: absolute;
+      left: 4px;
+      top: -1px;
+      color: #2563eb;
+      font-weight: bold;
+      font-size: 15px;
+    }
+    ul.check-list li::before {
+      content: "✔";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #059669;
+      font-weight: bold;
+      font-size: 11.5px;
+    }
+
+    /* Flow Diagrams */
+    .flow-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 5px;
+      background: #f8fafc;
+      border: 1.5px dashed #94a3b8;
+      border-radius: 7px;
+      padding: 7px 10px;
+      margin: 5px 0 7px 0;
+    }
+    .flow-step {
+      flex: 1;
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 5px 6px;
+      text-align: center;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #1e293b;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    }
+    .flow-step.active {
+      background: #eff6ff;
+      border-color: #3b82f6;
+      color: #1d4ed8;
+    }
+    .flow-arrow {
+      color: #2563eb;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    /* Output Box */
+    .output-box {
+      background: #0f172a;
+      color: #f8fafc;
+      border-radius: 6px;
+      padding: 5px 9px;
+      font-family: 'JetBrains Mono', 'Consolas', monospace;
+      font-size: 11.5px;
+      margin: 4px 0 6px 0;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .output-badge {
+      background: #334155;
+      color: #38bdf8;
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-size: 9.5px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    /* Cover Page Elements */
+    .cover-hero {
+      margin-top: 4px;
+      text-align: left;
+    }
+    .cover-hero h1 {
+      font-size: 26px;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.2;
+      letter-spacing: -0.4px;
+      margin-bottom: 6px;
+    }
+    .cover-hero p.lead {
+      font-size: 13.5px;
+      color: #475569;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+    .stats-bar {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+      margin-bottom: 9px;
+    }
+    .stat-pill {
+      background: #f8fafc;
+      border: 1.5px solid #cbd5e1;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #1e293b;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .stat-pill .count {
+      background: #2563eb;
+      color: #ffffff;
+      padding: 1px 6px;
+      border-radius: 9999px;
+      font-size: 10px;
+    }
+    .experience-card {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      color: #ffffff;
+      padding: 12px 15px;
+      border-radius: 9px;
+      margin: 7px 0;
+      box-shadow: 0 4px 10px -2px rgba(0,0,0,0.1);
+    }
+    .experience-card h3 {
+      font-size: 14px;
+      color: #38bdf8;
+      margin-bottom: 4px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .experience-card p {
+      font-size: 12.5px;
+      color: #cbd5e1;
+      line-height: 1.48;
+    }
+    .toc-card {
+      background: #f8fafc;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 9px 13px;
+      margin-top: 4px;
+    }
+    .toc-card h4 {
+      font-size: 12.5px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .toc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5px 14px;
+      font-size: 11.8px;
+    }
+    .toc-item {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px dotted #cbd5e1;
+      padding-bottom: 2px;
+      color: #334155;
+    }
+    .toc-item span.num {
+      font-weight: 700;
+      color: #2563eb;
+    }
+    .toc-item span.page-ref {
+      font-weight: 700;
+      color: #64748b;
+    }
+    
+  </style>
+</head>
+<body>
+
+    <div class="page">
+      <div class="running-header">
+        <div class="brand">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          <span>KnowledgeHub Curriculum</span>
+        </div>
+        <div>Web Design &bull; Unit 4 Master Guide</div>
+      </div>
+
+      <div class="cover-hero">
+        <div class="unit-badge">Master Edition &bull; Modern Tooling & Architecture</div>
+        <h1>Unit 4: Modern Web Development Tools</h1>
+        <p class="lead">
+          Unit 4 introduces modern web development tools, including Bootstrap, Git &amp; GitHub, browser developer tools, and debugging techniques. It also covers advanced topics such as AJAX, JSON, APIs, UI/UX principles, and web accessibility for developing modern, user-friendly web applications.
+        </p>
+
+        <div class="stats-bar">
+          <div class="stat-pill"><span class="count">100%</span> Exact Syllabus Coverage</div>
+          <div class="stat-pill"><span class="count">10</span> Core Modules</div>
+          <div class="stat-pill"><span class="count">40+</span> Code Examples &amp; Tests</div>
+          <div class="stat-pill"><span class="count">WCAG</span> Accessibility Standard</div>
+        </div>
+
+        <div class="experience-card">
+          <h3>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+            Senior Pedagogical &amp; Engineering Experience Summary (10+ Years)
+          </h3>
+          <p>
+            Redesigned with over a decade of real-world frontend architecture and computer science mentoring experience. This study guide transforms raw technical notes into an intuitive visual workbook. Featuring mobile-optimized typography, high-contrast syntax highlighting, step-by-step diagnostic workflows, and accessible layout patterns to empower students for exams, lab practicals, and professional web engineering careers.
+          </p>
+        </div>
+
+        <div class="toc-card">
+          <h4>Comprehensive Syllabus Roadmap &amp; Table of Contents</h4>
+          <div class="toc-grid">
+            <div class="toc-item"><span><span class="num">4.1.1</span> Bootstrap Framework &amp; Mobile-First Design</span><span class="page-ref">Page 02</span></div>
+            <div class="toc-item"><span><span class="num">4.1.1</span> Bootstrap CDN Setup &amp; Core Utility Classes</span><span class="page-ref">Page 03</span></div>
+            <div class="toc-item"><span><span class="num">4.1.1</span> 12-Column Grid System &amp; Breakpoints</span><span class="page-ref">Page 04</span></div>
+            <div class="toc-item"><span><span class="num">4.1.1</span> Responsive Cards &amp; Production Layouts</span><span class="page-ref">Page 05</span></div>
+            <div class="toc-item"><span><span class="num">4.1.2</span> Git &amp; GitHub Basics: Version Control Model</span><span class="page-ref">Page 06</span></div>
+            <div class="toc-item"><span><span class="num">4.1.2</span> Git Workflow &amp; Essential Command Reference</span><span class="page-ref">Page 07</span></div>
+            <div class="toc-item"><span><span class="num">4.1.2</span> First Commit, Remote GitHub Sync &amp; PRs</span><span class="page-ref">Page 08</span></div>
+            <div class="toc-item"><span><span class="num">4.1.3</span> Browser Developer Tools (DevTools) Overview</span><span class="page-ref">Page 09</span></div>
+            <div class="toc-item"><span><span class="num">4.1.3</span> DOM Inspection, Console &amp; Network Analysis</span><span class="page-ref">Page 10</span></div>
+            <div class="toc-item"><span><span class="num">4.1.4</span> Debugging Techniques &amp; Error Taxonomy</span><span class="page-ref">Page 11</span></div>
+            <div class="toc-item"><span><span class="num">4.1.4</span> Breakpoint Debugging &amp; The Debugger Keyword</span><span class="page-ref">Page 12</span></div>
+            <div class="toc-item"><span><span class="num">4.3</span> AJAX Architecture &amp; Dynamic Web Workflows</span><span class="page-ref">Page 13</span></div>
+            <div class="toc-item"><span><span class="num">4.3</span> Modern Fetch API, Live API Requests &amp; Handlers</span><span class="page-ref">Page 14</span></div>
+            <div class="toc-item"><span><span class="num">4.4</span> JSON Data Format, Data Types &amp; Syntax Rules</span><span class="page-ref">Page 15</span></div>
+            <div class="toc-item"><span><span class="num">4.4</span> JavaScript Object vs JSON: Stringify &amp; Parse</span><span class="page-ref">Page 16</span></div>
+            <div class="toc-item"><span><span class="num">3.2.2</span> Web APIs Architecture &amp; Real-Life Analogy</span><span class="page-ref">Page 17</span></div>
+            <div class="toc-item"><span><span class="num">3.2.2</span> HTTP Methods, Status Codes &amp; Fetching Posts</span><span class="page-ref">Page 18</span></div>
+            <div class="toc-item"><span><span class="num">3.2.2</span> API vs AJAX vs JSON &amp; Security Best Practices</span><span class="page-ref">Page 19</span></div>
+            <div class="toc-item"><span><span class="num">3.2.3</span> UI vs UX Design Foundations &amp; Core Principles</span><span class="page-ref">Page 20</span></div>
+            <div class="toc-item"><span><span class="num">3.2.3</span> Form Usability Case Study &amp; UX Evaluation</span><span class="page-ref">Page 21</span></div>
+            <div class="toc-item"><span><span class="num">3.2.4</span> Web Accessibility (a11y) &amp; Core Practices</span><span class="page-ref">Page 22</span></div>
+            <div class="toc-item"><span><span class="num">3.2.4</span> Accessible Heading Hierarchy, Contrast &amp; Form</span><span class="page-ref">Page 23</span></div>
+            <div class="toc-item"><span><span class="num">3.2.4</span> WCAG Audit Checklist &amp; POUR Principles</span><span class="page-ref">Page 24</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="running-footer">
+        <span>Unit 4: Modern Web Development Tools &bull; Master Curriculum</span>
+        <span class="tag-pill">Page 01 of 24</span>
+      </div>
+    </div>
+    
+    <div class="page">
+      <div class="running-header">
+        <div class="brand">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          <span>KnowledgeHub Curriculum</span>
+        </div>
+        <div>Unit 4 &bull; 4.1.1 Bootstrap (Responsive Design)</div>
+      </div>
+
+      <div class="unit-badge">Module 4.1.1 &bull; Front-End Responsive Framework</div>
+      <h2 class="section-title">Bootstrap: Fundamentals &amp; Philosophy</h2>
+
+      <div class="card card-tinted">
+        <h3 class="subsection-title">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+          What is Bootstrap?
+        </h3>
+        <p style="font-size:13.5px; line-height:1.5; color:#334155;">
+          <strong>Bootstrap</strong> is a front-end toolkit that provides ready-made CSS styles, layout utilities, and JavaScript components to build responsive, mobile-first websites.
+        </p>
+      </div>
+
+      <div class="definition-box">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+        <span><strong>Simple Definition:</strong> Bootstrap = A toolkit for creating responsive websites quickly</span>
+      </div>
+
+      <div class="card card-amber" style="margin-top: 8px;">
+        <div style="display:flex; align-items:center; gap:7px; margin-bottom:4px;">
+          <span class="badge badge-amber">Official Version Advisory</span>
+          <strong style="color:#92400e; font-size:12.5px;">Current Version Note</strong>
+        </div>
+        <p style="font-size:12.8px; color:#78350f; line-height:1.48;">
+          <strong>Bootstrap 5.3.8</strong> is the latest stable Bootstrap 5 release listed in the official documentation. Bootstrap 6 is currently an alpha release, so use Bootstrap 5.3.8 for stable classroom examples unless your course specifically requires an alpha version.
+        </p>
+        <div style="margin-top:5px; font-size:11.8px; font-weight:700; color:#b45309;">
+          &bull; Official Bootstrap documentation &bull; Version information
+        </div>
+      </div>
+
+      <h3 class="subsection-title" style="margin-top: 10px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+        Why Use Bootstrap?
+      </h3>
+
+      <div class="grid-2">
+        <div class="card card-blue">
+          <strong style="color:#1d4ed8; font-size:13px; display:block; margin-bottom:3px;">1. Universal Screen Adaptability</strong>
+          <p style="font-size:12.5px; color:#334155;">Creates layouts that adapt to mobiles, tablets, and desktops automatically.</p>
+        </div>
+        <div class="card card-emerald">
+          <strong style="color:#047857; font-size:13px; display:block; margin-bottom:3px;">2. 12-Column Responsive Grid</strong>
+          <p style="font-size:12.5px; color:#334155;">Provides a flexible, robust responsive grid system for fluid content alignment.</p>
+        </div>
+        <div class="card card-purple">
+          <strong style="color:#6d28d9; font-size:13px; display:block; margin-bottom:3px;">3. Rich Component Library</strong>
+          <p style="font-size:12.5px; color:#334155;">Includes ready-made buttons, cards, navigation bars, forms, alerts, and modals.</p>
+        </div>
+        <div class="card card-tinted">
+          <strong style="color:#0f172a; font-size:13px; display:block; margin-bottom:3px;">4. High Developer Velocity</strong>
+          <p style="font-size:12.5px; color:#334155;">Reduces the amount of custom CSS needed, speeding up production workflows.</p>
+        </div>
+      </div>
+
+      <div class="card card-tinted" style="margin-top:2px;">
+        <strong style="color:#0f172a; font-size:13px; display:block; margin-bottom:3px;">5. Deep Customization &amp; Theming</strong>
+        <p style="font-size:12.5px; color:#334155;">
+          Supports customization using CSS variables and Sass, enabling bespoke enterprise branding without fighting framework styles.
+        </p>
+      </div>
+
+      <div class="flow-container" style="margin-top: 8px;">
+        <div class="flow-step"><strong>Mobile Viewport</strong><br><span style="font-size:10.5px; color:#64748b;">Single Col Stack</span></div>
+        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-step"><strong>Tablet Viewport</strong><br><span style="font-size:10.5px; color:#64748b;">2 Col Adaptive</span></div>
+        <div class="flow-arrow">&rarr;</div>
+        <div class="flow-step active"><strong>Desktop Viewport</strong><br><span style="font-size:10.5px; color:#1d4ed8;">Full 12-Col Multi-Grid</span></div>
+      </div>
+
+      <div class="running-footer">
+        <span>4.1.1 Bootstrap (Responsive Design) &bull; Introduction &amp; Core Advantages</span>
+        <span class="tag-pill">Page 02 of 24</span>
+      </div>
+    </div>
+    
+    <div class="page">
+      <div class="running-header">
+        <div class="brand">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          <span>KnowledgeHub Curriculum</span>
+        </div>
+        <div>Unit 4 &bull; 4.1.1 Bootstrap Setup &amp; Classes</div>
+      </div>
+
+      <div class="unit-badge">Module 4.1.1 &bull; Practical Implementation</div>
+      <h2 class="section-title">Adding Bootstrap to HTML &amp; Common Classes</h2>
+
+      <p style="font-size:13px; color:#475569; margin-bottom:4px;">
+        The following example uses Bootstrap 5.3.8 through a CDN (Content Delivery Network).
+      </p>
+
+      <div class="code-container">
+        <div class="code-header">
+          <div class="code-dots"><div class="code-dot dot-red"></div><div class="code-dot dot-yellow"></div><div class="code-dot dot-green"></div></div>
+          <span>index.html &bull; Bootstrap 5.3.8 CDN Template</span>
+        </div>
+        <pre><span class="punct">&lt;!</span><span class="kw">doctype</span> <span class="attr">html</span><span class="punct">&gt;</span>
+<span class="punct">&lt;</span><span class="tag">html</span> <span class="attr">lang</span>=<span class="str">"en"</span><span class="punct">&gt;</span>
+<span class="punct">&lt;</span><span class="tag">head</span><span class="punct">&gt;</span>
+  <span class="punct">&lt;</span><span class="tag">meta</span> <span class="attr">charset</span>=<span class="str">"utf-8"</span><span class="punct">&gt;</span>
+  <span class="punct">&lt;</span><span class="tag">meta</span> <span class="attr">name</span>=<span class="str">"viewport"</span> <span class="attr">content</span>=<span class="str">"width=device-width, initial-scale=1"</span><span class="punct">&gt;</span>
+  <span class="punct">&lt;</span><span class="tag">title</span><span class="punct">&gt;</span>Bootstrap Example<span class="punct">&lt;/</span><span class="tag">title</span><span class="punct">&gt;</span>
+  <span class="punct">&lt;</span><span class="tag">link</span> <span class="attr">href</span>=<span class="str">"https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"</span> <span class="attr">rel</span>=<span class="str">"stylesheet"</span><span class="punct">&gt;</span>
+<span class="punct">&lt;/</span><span class="tag">head</span><span class="punct">&gt;</span>
+<span class="punct">&lt;</span><span class="tag">body</span><span class="punct">&gt;</span>
+  <span class="punct">&lt;</span><span class="tag">div</span> <span class="attr">class</span>=<span class="str">"container py-4"</span><span class="punct">&gt;</span>
+    <span class="punct">&lt;</span><span class="tag">h1</span> <span class="attr">class</span>=<span class="str">"text-primary"</span><span class="punct">&gt;</span>Welcome to Bootstrap<span class="punct">&lt;/</span><span class="tag">h1</span><span class="punct">&gt;</span>
+    <span class="punct">&lt;</span><span class="tag">p</span> <span class="attr">class</span>=<span class="str">"lead"</span><span class="punct">&gt;</span>This page uses Bootstrap styling.<span class="punct">&lt;/</span><span class="tag">p</span><span class="punct">&gt;</span>
+    <span class="punct">&lt;</span><span class="tag">button</span> <span class="attr">class</span>=<span class="str">"btn btn-success"</span><span class="punct">&gt;</span>Click Me<span class="punct">&lt;/</span><span class="tag">button</span><span class="punct">&gt;</span>
+  <span class="punct">&lt;/</span><span class="tag">div</span><span class="punct">&gt;</span>
+  <span class="punct">&lt;</span><span class="tag">script</span> <span class="attr">src</span>=<span class="str">"https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"</span><span class="punct">&gt;&lt;/</span><span class="tag">script</span><span class="punct">&gt;</span>
+<span class="punct">&lt;/</span><span class="tag">body</span><span class="punct">&gt;</span>
+<span class="punct">&lt;/</span><span class="tag">html</span><span class="punct">&gt;</span></pre>
+      </div>
+
+      <h3 class="subsection-title" style="margin-top: 8px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+        Understanding Common Bootstrap Classes
+      </h3>
+
+      <table class="custom-table">
+        <thead>
+          <tr>
+            <th style="width: 28%;">Class Name</th>
+            <th>Purpose &amp; Functional Effect</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>container</code></td>
+            <td>Creates a centered responsive content area with automatic horizontal padding.</td>
+          </tr>
+          <tr>
+            <td><code>row</code></td>
+            <td>Creates a horizontal wrapper in the grid system with negative margins to house columns.</td>
+          </tr>
+          <tr>
+            <td><code>col-md-6</code></td>
+            <td>Uses half the row width (6 out of 12 columns) at the medium breakpoint and above.</td>
+          </tr>
+          <tr>
+            <td><code>text-primary</code></td>
+            <td>Applies the primary theme text color (standard Bootstrap corporate blue).</td>
+          </tr>
+          <tr>
+            <td><code>bg-light</code></td>
+            <td>Applies a subtle light-gray background to the container or element.</td>
+          </tr>
+          <tr>
+            <td><code>p-3</code></td>
+            <td>Adds standard padding (level 3: <code>1rem</code> / 16px) across all four sides.</td>
+          </tr>
+          <tr>
+            <td><code>mt-4</code></td>
+            <td>Adds top margin (level 4: <code>1.5rem</code> / 24px) to separate sections vertically.</td>
+          </tr>
+          <tr>
+            <td><code>btn btn-primary</code></td>
+            <td>Styles an interactive element as a standard primary action button with hover states.</td>
+          </tr>
+          <tr>
+            <td><code>img-fluid</code></td>
+            <td>Makes an image responsive with <code>max-width: 100%; height: auto;</code>.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="card card-blue" style="margin-top: 6px;">
+        <strong style="color:#1d4ed8; font-size:12px;">Architecture Tip:</strong>
+        <span style="font-size:12px; color:#334155;">
+          The CSS link is loaded in the <code>&lt;head&gt;</code> to prevent Flash of Unstyled Content (FOUC), while the JS bundle with Popper is loaded just before <code>&lt;/body&gt;</code> for rapid page painting.
+        </span>
+      </div>
+
+      <div class="running-footer">
+        <span>4.1.1 Bootstrap (Responsive Design) &bull; CDN Setup &amp; Core Utility Classes</span>
+        <span class="tag-pill">Page 03 of 24</span>
+      </div>
+    </div>
+    
+    <div class="page">
+      <div class="running-header">
+        <div class="brand">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          <span>KnowledgeHub Curriculum</span>
+        </div>
+        <div>Unit 4 &bull; 4.1.1 Grid System &amp; Breakpoints</div>
+      </div>
+
+      <div class="unit-badge">Module 4.1.1 &bull; Layout Engine</div>
+      <h2 class="section-title">Bootstrap Grid System &amp; Responsive Breakpoints</h2>
+
+      <div class="card card-tinted">
+        <h3 class="subsection-title">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+          The 12-Column Grid Architecture
+        </h3>
+        <p style="font-size:13px; color:#334155; line-height:1.5;">
+          Bootstrap uses a <strong>12-column grid</strong>. Columns can occupy different portions of a row depending on the screen size. Rows must be placed within a <code>container</code> or <code>container-fluid</code> for proper alignment and padding.
+        </p>
+      </div>
+
+      <div class="code-container">
+        <div class="code-header">
+          <div class="code-dots"><div class="code-dot dot-red"></div><div class="code-dot dot-yellow"></div><div class="code-dot dot-green"></div></div>
+          <span>HTML &bull; Two-Column Responsive Layout</span>
+        </div>
+        <pre><span class="punct">&lt;</span><span class="tag">div</span> <span class="attr">class</span>=<span class="str">"container"</span><span class="punct">&gt;</span>
+  <span class="punct">&lt;</span><span class="tag">div</span> <span class="attr">class</span>=<span class="str">"row"</span><span class="punct">&gt;</span>
+    <span class="punct">&lt;</span><span class="tag">div</span> <span class="attr">class</span>=<span class="str">"col-md-6"</span><span class="punct">&gt;</span>Left section<span class="punct">&lt;/</span><span class="tag">div</span><span class="punct">&gt;</span>
+    <span class="punct">&lt;</span><span class="tag">div</span> <span class="attr">class</span>=<span class="str">"col-md-6"</span><span class="punct">&gt;</span>Right section<span class="punct">&lt;/</span><span class="tag">div</span><span class="punct">&gt;</span>
+  <span class="punct">&lt;/</span><span class="tag">div</span><span class="punct">&gt;</span>
+<span class="punct">&lt;/</span><span class="tag">div</span><span class="punct">&gt;</span></pre>
+      </div>
+
+      <div class="card card-blue" style="margin-bottom: 8px;">
+        <strong style="color:#1d4ed8; font-size:12.8px; display:block; margin-bottom:2px;">Responsive Stacking Behavior</strong>
+        <p style="font-size:12.5px; color:#334155;">
+          On medium and larger screens, each section takes half the row (6 of 12 columns). On smaller screens (&lt; 768px), these columns normally stack vertically, filling 100% of the mobile viewport.
+        </p>
+      </div>
+
+      <h3 class="subsection-title" style="margin-top: 6px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+        Responsive Breakpoints Reference
+      </h3>
+
+      <table class="custom-table">
+        <thead>
+          <tr>
+            <th style="width: 18%;">Prefix</th>
+            <th style="width: 32%;">Typical Breakpoint</th>
+            <th>Target Device Class &amp; Media Query</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>sm</code></td>
+            <td><strong>576px</strong> and above</td>
+            <td>Small devices &bull; Landscape phones (<code>@media (min-width: 576px)</code>)</td>
+          </tr>
+          <tr>
+            <td><code>md</code></td>
+            <td><strong>768px</strong> and above</td>
+            <td>Medium devices &bull; Tablets (<code>@media (min-width: 768px)</code>)</td>
+          </tr>
+          <tr>
+            <td><code>lg</code></td>
+            <td><strong>992px</strong> and above</td>
+            <td>Large devices &bull; Laptops &amp; small desktop displays (<code>@media (min-width: 992px)</code>)</td>
+          </tr>
+          <tr>
+            <td><code>xl</code></td>
+            <td><strong>1200px</strong> and above</td>
+            <td>Extra large devices &bull; Standard desktop monitors (<code>@media (min-width: 1200px)</code>)</td>
+          </tr>
+          <tr>
+            <td><code>xxl</code></td>
+            <td><strong>1400px</strong> and above</td>
+            <td>Extra extra large devices &bull; Ultra-wide &amp; 4K displays (<code>@media (min-width: 1400px)</code>)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="card card-tinted" style="margin-top: 6px;">
+        <p style="font-size:12.3px; color:#475569;">
+          <strong>Configuration Note:</strong> These are minimum-width breakpoints in Bootstrap's default configuration; they can be customized using custom Sass maps (<code>$grid-breakpoints</code>) during build pipeline setup.
+        </p>
+      </div>
+
+      <div class="running-footer">
+        <span>4.1.1 Bootstrap (Responsive Design) &bull; Grid System &amp; Breakpoints</span>
+        <span class="tag-pill">Page 04 of 24</span>
+      </div>
+    </div>
+    
+    <div class="page">
+      <div class="running-header">
+        <div class="brand">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          <span>KnowledgeHub Curriculum</span>
+        </div>
+        <div>Unit 4 &bull; 4.1.1 Responsive Cards &amp; Best Practices</div>
+      </div>
+
+      <div class="unit-badge">Module 4.1.1 &bull; Component Layouts</div>
+      <h2 class="section-title">Responsive Cards &amp; Production Design Standards</h2>
+
+      <p style="font-size:13px; color:#475569; margin-bottom:4px;">
+        <strong>Example: Responsive Cards</strong> demonstrates how multi-tiered breakpoints create adaptive web experiences across phones, tablets, and wide monitors.
+      </p>
+
+      <div class="code-container">
+        <div class="code-header">
+          <div class="code-dots"><div class="code-dot dot-red"></div><div class="code-dot dot-yellow"></div><div class="code-dot dot-green"></div></div>
+          <span>HTML &bull; Responsive 3-Card Layout</span>
+        </div>
+        <pre><span class="punct">&lt;</span><span class="tag">div</span> <span class="attr">class</span>=<span class="str">"container py-4"</span><span class="punct">&gt;</span>
+  <span class="punct">&lt;</span><span class="tag">div</span> <span class="attr">class</span>=<span class="str">"row g-3"</span><span class="punct">&gt;</span>
+    <span class="punct">&lt;</span><span class="tag">div</span> <span class="attr">class</span>=<span class="str">"col-12 col-md-6 col-lg-4"</span><span class="punct">&gt;</span>
+      <span class="punct">&lt;</span><span class="tag">div</span> <span class="attr">class</span>=<span class="str">"card p-3"</span><span class="punct">&gt;</span>
+        <span class="punct">&lt;</span><span class="tag">h2</span> <span class="attr">class</span>=<span class="str">"h5"</span><span class="punct">&gt;</span>HTML<span class="punct">&lt;/</span><span class="tag">h2</span><span class="punct">&gt;</span>
+        <span class="punct">&lt;</span><span class="tag">p</span><span class="punct">&gt;</span>Structures webpage content.<span class="punct">&lt;/</span><span class="tag">p</span><span class="punct">&gt;</span>
+      <span class="punct">&lt;/</span><span class="tag">div</span><span class="punct">&gt;</span>
+    <span class="punct">&lt;/</span><span class="tag">div</span><span class="punct">&gt;</span>
+    <span class="punct">&lt;</span><span class="tag">div</span> <span class="attr">class</span>=<span class="str">"col-12 col-md-6 col-lg-4"</span><span class="punct">&gt;</span>
+      <span class="punct">&lt;</span><span class="tag">div</span> <span class="attr">class</span>=<span class="str">"card p-3"</span><span class="punct">&gt;</span>
+        <span class="punct">&lt;</span><span class="tag">h2</span> <span class="attr">class</span>=<span class="str">"h5"</span><span class="punct">&gt;</span>CSS<span class="punct">&lt;/</span><span class="tag">h2</span><span class="punct">&gt;</span>
+        <span class="punct">&lt;</span><span class="tag">p</span><span class="punct">&gt;</span>Styles webpage content.<span class="punct">&lt;/</span><span class="tag">p</span><span class="punct">&gt;</span>
+      <span class="punct">&lt;/</span><span class="tag">div</span><span class="punct">&gt;</span>
+    <span class="punct">&lt;/</span><span class="tag">div</span><span class="punct">&gt;</span>
+    <span class="punct">&lt;</span><span class="tag">div</span> <span class="attr">class</span>=<span class="str">"col-12 col-md-6 col-lg-4"</span><span class="punct">&gt;</span>
+      <span class="punct">&lt;</span><span class="tag">div</span> <span class="attr">class</span>=<span class="str">"card p-3"</span><span class="punct">&gt;</span>
+        <span class="punct">&lt;</span><span class="tag">h2</span> <span class="attr">class</span>=<span class="str">"h5"</span><span class="punct">&gt;</span>JavaScript<span class="punct">&lt;/</span><span class="tag">h2</span><span class="punct">&gt;</span>
+        <span class="punct">&lt;</span><span class="tag">p</span><span class="punct">&gt;</span>Adds behavior and interactivity.<span class="punct">&lt;/</span><span class="tag">p</span><span class="punct">&gt;</span>
+      <span class="punct">&lt;/</span><span class="tag">div</span><span class="punct">&gt;</span>
+    <span class="punct">&lt;/</span><span class="tag">div</span><span class="punct">&gt;</span>
+  <span class="punct">&lt;/</span><span class="tag">div</span><span class="punct">&gt;</span>
+<span class="punct">&lt;/</span><span class="tag">div</span><span class="punct">&gt;</span></pre>
+      </div>
+
+      <div class="card card-emerald">
+        <strong style="color:#047857; font-size:12.8px; display:block; margin-bottom:2px;">Breakpoint Distribution Breakdown</strong>
+        <p style="font-size:12.5px; color:#334155;">
+          Here, each card uses the <strong>full width</strong> (12 columns) on small screens, <strong>half the width</strong> (6 columns) on medium screens, and <strong>one-third of the row</strong> (4 columns) on large screens. The <code>g-3</code> class automatically manages fluid gutters.
+        </p>
+      </div>
+
+      <div class="grid-3" style="margin-top: 6px;">
+        <div class="card card-tinted" style="text-align:center;">
+          <span class="badge badge-primary" style="margin-bottom:4px;">Mobile (&lt; 768px)</span>
+          <p style="font-size:11.8px; color:#334155; font-weight:700;"><code>col-12</code> (100% Width)</p>
+          <span style="font-size:11px; color:#64748b;">1 card per vertical row</span>
+        </div>
+        <div class="card card-tinted" style="text-align:center;">
+          <span class="badge badge-purple" style="margin-bottom:4px;">Tablet (&ge; 768px)</span>
+          <p style="font-size:11.8px; color:#334155; font-weight:700;"><code>col-md-6</code> (50% Width)</p>
+          <span style="font-size:11px; color:#64748b;">2 cards side-by-side</span>
+        </div>
+        <div class="card card-tinted" style="text-align:center;">
+          <span class="badge badge-emerald" style="margin-bottom:4px;">Desktop (&ge; 992px)</span>
+          <p style="font-size:11.8px; color:#334155; font-weight:700;"><code>col-lg-4</code> (33.3% Width)</p>
+          <span style="font-size:11px; color:#64748b;">3 cards side-by-side</span>
+        </div>
+      </div>
+
+      <div class="card card-amber" style="margin-top: 4px;">
+        <h3 class="subsection-title" style="color:#92400e; margin-top:0;">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2.2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+          Important Point
+        </h3>
+        <p style="font-size:12.8px; color:#78350f; line-height:1.48;">
+          Bootstrap helps with responsive layout, but developers must still use meaningful HTML, accessible labels, appropriate contrast, and real-device testing.
+        </p>
+      </div>
+
+      <div class="running-footer">
+        <span>4.1.1 Bootstrap (Responsive Design) &bull; Responsive Cards &amp; Best Practices</span>
+        <span class="tag-pill">Page 05 of 24</span>
+      </div>
+    </div>
+    
+    <div class="page">
+      <div class="running-header">
+        <div class="brand">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          <span>KnowledgeHub Curriculum</span>
+        </div>
+        <div>Unit 4 &bull; 4.1.2 Git &amp; GitHub Basics</div>
+      </div>
+
+      <div class="unit-badge">Module 4.1.2 &bull; Version Control System</div>
+      <h2 class="section-title">Git &amp; GitHub Basics: Core Concepts</h2>
+
+      <div class="grid-2">
+        <div class="card card-tinted">
+          <h3 class="subsection-title">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            What is Git?
+          </h3>
+          <p style="font-size:13px; color:#334155; line-height:1.5;">
+            <strong>Git</strong> is a version control system that records changes to files over time. It helps developers review earlier versions, create branches, and work safely on code.
+          </p>
+        </div>
+
+        <div class="card card-tinted">
+          <h3 class="subsection-title">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            What is GitHub?
+          </h3>
+          <p style="font-size:13px; color:#334155; line-height:1.5;">
+            <strong>GitHub</strong> is an online platform for hosting Git repositories. It supports collaboration through pull requests, issues, code reviews, and project discussions.
+          </p>
+        </div>
+      </div>
+
+      <h3 class="subsection-title" style="margin-top: 8px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+        Git vs GitHub: Architectural Comparison
+      </h3>
+
+      <table class="custom-table">
+        <thead>
+          <tr>
+            <th style="width: 25%;">Comparison Dimension</th>
+            <th style="width: 37%;">Git</th>
+            <th style="width: 38%;">GitHub</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Software Type</strong></td>
+            <td>Version control software (VCS command-line tool)</td>
+            <td>Online cloud platform for Git repositories</td>
+          </tr>
+          <tr>
+            <td><strong>Connectivity</strong></td>
+            <td>Can work locally without internet access</td>
+            <td>Usually accessed online for collaboration</td>
+          </tr>
+          <tr>
+            <td><strong>Core Responsibility</strong></td>
+            <td>Tracks file changes and commits history</td>
+            <td>Hosts code and supports team workflows</td>
+          </tr>
+          <tr>
+            <td><strong>Collaboration Features</strong></td>
+            <td>Provides local branches and merges</td>
+            <td>Provides pull requests, issues, and code reviews</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="card card-purple" style="margin-top: 8px;">
+        <strong style="color:#6d28d9; font-size:13px; display:block; margin-bottom:3px;">The Synergy between Git and GitHub</strong>
+        <p style="font-size:12.5px; color:#334155; line-height:1.48;">
+          Developers use <strong>Git</strong> locally on their computers to track snapshots of code, create experimental branches, and roll back bugs. When ready to share, they push their commits to <strong>GitHub</strong>, enabling teammates worldwide to review, comment on, and merge changes seamlessly.
+        </p>
+      </div>
+
+      <div class="running-footer">
+        <span>4.1.2 Git &amp; GitHub Basics &bull; Version Control Models &amp; Differences</span>
+        <span class="tag-pill">Page 06 of 24</span>
+      </div>
+    </div>
+    
+    <div class="page">
+      <div class="running-header">
+        <div class="brand">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          <span>KnowledgeHub Curriculum</span>
+        </div>
+        <div>Unit 4 &bull; 4.1.2 Git Workflow &amp; Commands</div>
+      </div>
+
+      <div class="unit-badge">Module 4.1.2 &bull; Terminal Mastery</div>
+      <h2 class="section-title">Basic Git Workflow &amp; Common Commands</h2>
+
+      <h3 class="subsection-title">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+        Basic Git Workflow Architecture
+      </h3>
+
+      <div class="flow-container">
+        <div class="flow-step">
+          <strong>Working files</strong><br>
+          <span style="font-size:10px; color:#64748b;">Local Edits</span>
+        </div>
+        <div class="flow-arrow">&darr; git add</div>
+        <div class="flow-step">
+          <strong>Staging area</strong><br>
+          <span style="font-size:10px; color:#64748b;">Prepared Changes</span>
+        </div>
+        <div class="flow-arrow">&darr; git commit</div>
+        <div class="flow-step">
+          <strong>Local repository</strong><br>
+          <span style="font-size:10px; color:#64748b;">Recorded Commits</span>
+        </div>
+        <div class="flow-arrow">&darr; git push</div>
+        <div class="flow-step active">
+          <strong>Remote repository</strong><br>
+          <span style="font-size:10px; color:#1d4ed8;">GitHub Cloud</span>
+        </div>
+      </div>
+
+      <h3 class="subsection-title" style="margin-top: 6px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+        Common Git Commands Sandbox
+      </h3>
+
+      <div class="code-container">
+        <div class="code-header">
+          <div class="code-dots"><div class="code-dot dot-red"></div><div class="code-dot dot-yellow"></div><div class="code-dot dot-green"></div></div>
+          <span>bash / terminal &bull; Essential Git Command Sequence</span>
+        </div>
+        <pre><span class="cmd">git --version</span>
+<span class="cmd">git init</span>
+<span class="cmd">git status</span>
+<span class="cmd">git add index.html</span>
+<span class="cmd">git add .</span>
+<span class="cmd">git commit -m "Add homepage"</span>
+<span class="cmd">git log --oneline</span>
+<span class="cmd">git branch</span>
+<span class="cmd">git switch -c feature/navbar</span>
+<span class="cmd">git switch main</span>
+<span class="cmd">git pull</span>
+<span class="cmd">git push</span></pre>
+      </div>
+
+      <h3 class="subsection-title" style="margin-top: 6px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+        What Do These Commands Do?
+      </h3>
+
+      <ul class="bullet-list">
+        <li><strong><code>git init</code></strong> &mdash; initializes a Git repository in the current folder.</li>
+        <li><strong><code>git status</code></strong> &mdash; shows changed, untracked, and staged files.</li>
+        <li><strong><code>git add</code></strong> &mdash; stages selected changes for the next commit.</li>
+        <li><strong><code>git commit</code></strong> &mdash; records staged changes in the local repository.</li>
+        <li><strong><code>git log</code></strong> &mdash; displays commit history and cryptographic hashes.</li>
+        <li><strong><code>git branch</code></strong> &mdash; lists existing branches in the repository.</li>
+        <li><strong><code>git switch -c</code></strong> &mdash; creates and switches immediately to a new branch.</li>
+      </ul>
+
+      <div class="running-footer">
+        <span>4.1.2 Git &amp; GitHub Basics &bull; Workflow Pipeline &amp; Command Reference</span>
+        <span class="tag-pill">Page 07 of 24</span>
+      </div>
+    </div>
+    
+    <div class="page">
+      <div class="running-header">
+        <div class="brand">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          <span>KnowledgeHub Curriculum</span>
+        </div>
+        <div>Unit 4 &bull; 4.1.2 Git in Action &amp; Best Practices</div>
+      </div>
+
+      <div class="unit-badge">Module 4.1.2 &bull; Hands-on Workflow</div>
+      <h2 class="section-title">First Commit, GitHub Remote &amp; Best Practices</h2>
+
+      <div class="grid-2">
+        <div class="card card-tinted">
+          <strong style="color:#0f172a; font-size:12.5px;">Remote Sync Commands</strong>
+          <ul class="bullet-list" style="margin-top:4px;">
+            <li><strong><code>git pull</code></strong> &mdash; fetches and integrates changes from a remote repository.</li>
+            <li><strong><code>git push</code></strong> &mdash; sends local commits to a remote repository.</li>
+          </ul>
+        </div>
+        <div class="card card-blue">
+          <strong style="color:#1d4ed8; font-size:12.5px;">Branches &amp; Pull Requests</strong>
+          <p style="font-size:12px; color:#334155; margin-top:3px;">
+            A <strong>branch</strong> allows a developer to work on a feature without directly changing the main branch. A <strong>pull request</strong> proposes changes for review before they are merged.
+          </p>
+        </div>
+      </div>
+
+      <h3 class="subsection-title" style="margin-top: 6px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+        Example: First Commit Walkthrough
+      </h3>
+
+      <div class="code-container">
+        <div class="code-header">
+          <div class="code-dots"><div class="code-dot dot-red"></div><div class="code-dot dot-yellow"></div><div class="code-dot dot-green"></div></div>
+          <span>bash &bull; Initializing &amp; Staging Files</span>
+        </div>
+        <pre><span class="cmd">mkdir student-website</span>
+<span class="cmd">cd student-website</span>
+<span class="cmd">git init</span>
+
+<span class="comment"># Create an index.html file, then run:</span>
+<span class="cmd">git add index.html</span>
+<span class="cmd">git commit -m "Create initial webpage"</span></pre>
+      </div>
+
+      <h3 class="subsection-title" style="margin-top: 6px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+        Connecting a Local Repository to GitHub
+      </h3>
+
+      <p style="font-size:12.8px; color:#475569; margin-bottom:3px;">
+        Create an empty repository on GitHub, then use its actual URL:
+      </p>
+
+      <div class="code-container">
+        <div class="code-header">
+          <div class="code-dots"><div class="code-dot dot-red"></div><div class="code-dot dot-yellow"></div><div class="code-dot dot-green"></div></div>
+          <span>bash &bull; Pushing to GitHub Remote</span>
+        </div>
+        <pre><span class="cmd">git remote add origin https://github.com/USERNAME/REPOSITORY.git</span>
+<span class="cmd">git branch -M main</span>
+<span class="cmd">git push -u origin main</span></pre>
+      </div>
+
+      <div class="card card-tinted" style="padding:6px 10px; margin-bottom:6px;">
+        <span style="font-size:11.8px; color:#64748b;"><strong>Note:</strong> Replace <code>USERNAME</code> and <code>REPOSITORY</code> with your actual GitHub account and repo values.</span>
+      </div>
+
+      <h3 class="subsection-title" style="margin-top: 6px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        Good Practices Checklist
+      </h3>
+
+      <div class="grid-2">
+        <div class="card card-tinted">
+          <strong style="color:#0f172a; font-size:12.5px;">&bull; Write clear commit messages.</strong>
+          <p style="font-size:11.8px; color:#475569;">Explain why a change was made, not just what lines changed.</p>
+        </div>
+        <div class="card card-tinted">
+          <strong style="color:#0f172a; font-size:12.5px;">&bull; Commit small, meaningful changes.</strong>
+          <p style="font-size:11.8px; color:#475569;">Isolate changes to facilitate rollbacks and pinpoint debugging.</p>
+        </div>
+        <div class="card card-rose">
+          <strong style="color:#be123c; font-size:12.5px;">&bull; Do not commit passwords or API keys.</strong>
+          <p style="font-size:11.8px; color:#475569;">Always use <code>.gitignore</code> and environment variables for secrets.</p>
+        </div>
+        <div class="card card-emerald">
+          <strong style="color:#047857; font-size:12.5px;">&bull; Use branches &amp; review changes.</strong>
+          <p style="font-size:11.8px; color:#475569;">Separate features onto branches and review diffs before merging.</p>
+        </div>
+      </div>
+
+      <div class="running-footer">
+        <span>4.1.2 Git &amp; GitHub Basics &bull; Remote GitHub Sync &amp; Good Practices</span>
+        <span class="tag-pill">Page 08 of 24</span>
+      </div>
+    </div>
+    
+    <div class="page">
+      <div class="running-header">
+        <div class="brand">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          <span>KnowledgeHub Curriculum</span>
+        </div>
+        <div>Unit 4 &bull; 4.1.3 Browser Developer Tools</div>
+      </div>
+
+      <div class="unit-badge">Module 4.1.3 &bull; Web Diagnostic Utilities</div>
+      <h2 class="section-title">Browser Developer Tools (DevTools) Overview</h2>
+
+      <div class="card card-tinted">
+        <h3 class="subsection-title">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+          What are Browser Developer Tools?
+        </h3>
+        <p style="font-size:13px; color:#334155; line-height:1.5;">
+          <strong>Browser Developer Tools (DevTools)</strong> are built-in browser utilities used to inspect HTML and CSS, run JavaScript, analyze network requests, and diagnose webpage problems.
+        </p>
+        <p style="font-size:12.5px; color:#64748b; margin-top:4px;">
+          They are available in browsers such as <strong>Google Chrome</strong>, <strong>Microsoft Edge</strong>, and <strong>Mozilla Firefox</strong>.
+        </p>
+      </div>
+
+      <h3 class="subsection-title" style="margin-top: 8px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+        Opening DevTools: Three Standard Methods
+      </h3>
+
+      <div class="grid-3">
+        <div class="card card-blue" style="text-align:center;">
+          <strong style="color:#1d4ed8; font-size:13px; display:block; margin-bottom:2px;">Shortcut Key</strong>
+          <span class="badge badge-primary" style="font-size:12px; margin-bottom:3px;">Press F12</span>
+          <p style="font-size:11.5px; color:#475569;">Fastest toggle across most desktop browsers.</p>
+        </div>
+        <div class="card card-emerald" style="text-align:center;">
+          <strong style="color:#047857; font-size:13px; display:block; margin-bottom:2px;">Context Menu</strong>
+          <span class="badge badge-emerald" style="font-size:12px; margin-bottom:3px;">Right-Click &rarr; Inspect</span>
+          <p style="font-size:11.5px; color:#475569;">Inspects the exact clicked DOM node directly.</p>
+        </div>
+        <div class="card card-purple" style="text-align:center;">
+          <strong style="color:#6d28d9; font-size:13px; display:block; margin-bottom:2px;">Application Menu</strong>
+          <span class="badge badge-purple" style="font-size:12px; margin-bottom:3px;">Menu &rarr; DevTools</span>
+          <p style="font-size:11.5px; color:#475569;">Available in browser settings / more tools.</p>
+        </div>
+      </div>
+
+      <h3 class="subsection-title" style="margin-top: 8px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><layout></layout><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+        Important DevTools Panels Reference
+      </h3>
+
+      <table class="custom-table">
+        <thead>
+          <tr>
+            <th style="width: 30%;">Panel Name</th>
+            <th>Primary Purpose &amp; Engineering Activity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>Elements / Inspector</code></td>
+            <td>Inspect and temporarily edit HTML and CSS in real time; live box-model audit.</td>
+          </tr>
+          <tr>
+            <td><code>Console</code></td>
+            <td>View messages, logs, warnings, errors, and execute interactive JavaScript expressions.</td>
+          </tr>
+          <tr>
+            <td><code>Sources / Debugger</code></td>
+            <td>Set breakpoints, step through code, inspect call stacks, and debug scripts.</td>
+          </tr>
+          <tr>
+            <td><code>Network</code></td>
+            <td>Inspect requests, responses, status codes, payload sizes, and asset loading times.</td>
+          </tr>
+          <tr>
+            <td><code>Application / Storage</code></td>
+            <td>Inspect cookies, local storage, session storage, indexedDB, and related cached data.</td>
+          </tr>
+          <tr>
+            <td><code>Performance</code></td>
+            <td>Analyze runtime performance, CPU profiling, frame rates, and page rendering cycles.</td>
+          </tr>
+          <tr>
+            <td><code>Accessibility tools</code></td>
+            <td>Inspect accessibility trees, contrast ratios, and ARIA attributes where supported.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="running-footer">
+        <span>4.1.3 Browser Developer Tools &bull; Overview &amp; Important Panels</span>
+        <span class="tag-pill">Page 09 of 24</span>
+      </div>
+    </div>
+    
+    <div class="page">
+      <div class="running-header">
+        <div class="brand">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          <span>KnowledgeHub Curriculum</span>
+        </div>
+        <div>Unit 4 &bull; 4.1.3 DevTools in Practice</div>
+      </div>
+
+      <div class="unit-badge">Module 4.1.3 &bull; Diagnostic Workflows</div>
+      <h2 class="section-title">Live DOM Inspection, Console &amp; Network Auditing</h2>
+
+      <h3 class="subsection-title">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+        Example: Inspecting an Element
+      </h3>
+
+      <div class="code-container">
+        <div class="code-header">
+          <div class="code-dots"><div class="code-dot dot-red"></div><div class="code-dot dot-yellow"></div><div class="code-dot dot-green"></div></div>
+          <span>HTML &bull; Target Element for Inspection</span>
+        </div>
+        <pre><span class="punct">&lt;</span><span class="tag">h1</span> <span class="attr">id</span>=<span class="str">"heading"</span><span class="punct">&gt;</span>Hello Students<span class="punct">&lt;/</span><span class="tag">h1</span><span class="punct">&gt;</span></pre>
+      </div>
+
+      <p style="font-size:12.8px; color:#334155;">
+        In DevTools, select the heading in the <strong>Elements panel</strong> and temporarily change its CSS:
+      </p>
+
+      <div class="code-container">
+        <div class="code-header">
+          <div class="code-dots"><div class="code-dot dot-red"></div><div class="code-dot dot-yellow"></div><div class="code-dot dot-green"></div></div>
+          <span>DevTools CSS Styles Pane &bull; Temporary Live Overrides</span>
+        </div>
+        <pre><span class="prop">color</span>: <span class="val">blue</span>;
+<span class="prop">font-size</span>: <span class="val">36px</span>;</pre>
+      </div>
+
+      <div class="card card-tinted" style="padding:6px 10px; margin-bottom:8px;">
+        <span style="font-size:12px; color:#64748b;">
+          <strong>Crucial Concept:</strong> These changes are usually temporary and do not automatically update the source file on disk. Reloading the browser restores original styles.
+        </span>
+      </div>
+
+      <h3 class="subsection-title">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+        Example: Using the Console
+      </h3>
+
+      <div class="code-container">
+        <div class="code-header">
+          <div class="code-dots"><div class="code-dot dot-red"></div><div class="code-dot dot-yellow"></div><div class="code-dot dot-green"></div></div>
+          <span>JavaScript &bull; Console Logging Methods</span>
+        </div>
+        <pre><span class="kw">let</span> marks = <span class="num">85</span>;
+<span class="fn">console.log</span>(<span class="str">"Marks:"</span>, marks);
+<span class="fn">console.warn</span>(<span class="str">"Check the result"</span>);
+<span class="fn">console.error</span>(<span class="str">"Example error message"</span>);</pre>
+      </div>
+
+      <div class="card card-blue" style="padding:6px 10px; margin-bottom:8px;">
+        <span style="font-size:12.5px; color:#1d4ed8;"><strong>Takeaway:</strong> The Console helps developers inspect runtime variable values and identify system errors rapidly.</span>
+      </div>
+
+      <h3 class="subsection-title">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+        Example: Checking a Network Request (5-Step Procedure)
+      </h3>
+
+      <ul class="bullet-list">
+        <li><strong>Step 1:</strong> Open DevTools (Press <code>F12</code> or right-click Inspect).</li>
+        <li><strong>Step 2:</strong> Select the <strong>Network</strong> panel in the DevTools top navigation bar.</li>
+        <li><strong>Step 3:</strong> Reload the webpage to capture incoming HTTP traffic.</li>
+        <li><strong>Step 4:</strong> Select a specific network request from the waterfall list.</li>
+        <li><strong>Step 5:</strong> Review its status code, request/response headers, response body, and timing.</li>
+      </ul>
+
+      <div class="card card-amber" style="margin-top:6px;">
+        <strong style="color:#92400e; font-size:12px;">Diagnostic Status Code Reference:</strong>
+        <p style="font-size:12.3px; color:#78350f; margin-top:2px;">
+          A <strong>404 response</strong> commonly indicates that a requested resource was not found. A <strong>500 response</strong> generally indicates an unhandled server-side error.
+        </p>
+      </div>
+
+      <div class="running-footer">
+        <span>4.1.3 Browser Developer Tools &bull; Live Inspection, Console &amp; Network Auditing</span>
+        <span class="tag-pill">Page 10 of 24</span>
+      </div>
+    </div>
+    
+    <div class="page">
+      <div class="running-header">
+        <div class="brand">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          <span>KnowledgeHub Curriculum</span>
+        </div>
+        <div>Unit 4 &bull; 4.1.4 Debugging Techniques</div>
+      </div>
+
+      <div class="unit-badge">Module 4.1.4 &bull; Code Quality &amp; Problem Solving</div>
+      <h2 class="section-title">Debugging Techniques &amp; Error Taxonomy</h2>
+
+      <div class="card card-tinted">
+        <h3 class="subsection-title">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+          What is Debugging?
+        </h3>
+        <p style="font-size:13px; color:#334155; line-height:1.5;">
+          <strong>Debugging</strong> is the process of locating, understanding, and fixing errors in a program.
+        </p>
+      </div>
+
+      <h3 class="subsection-title" style="margin-top: 6px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+        Common Types of Errors
+      </h3>
+
+      <table class="custom-table">
+        <thead>
+          <tr>
+            <th style="width: 25%;">Error Type</th>
+            <th style="width: 45%;">Meaning &amp; Cause</th>
+            <th style="width: 30%;">Real-World Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong style="color:#be123c;">Syntax error</strong></td>
+            <td>Code does not follow the grammar or syntax rules of the programming language.</td>
+            <td>Missing closing parenthesis <code>)</code> or bracket</td>
+          </tr>
+          <tr>
+            <td><strong style="color:#d97706;">Runtime error</strong></td>
+            <td>An exception occurs while the code executes, crashing script execution.</td>
+            <td>Calling a method on <code>null</code> or <code>undefined</code></td>
+          </tr>
+          <tr>
+            <td><strong style="color:#2563eb;">Logical error</strong></td>
+            <td>Code executes completely without errors but produces the wrong result.</td>
+            <td>Using <code>+</code> instead of <code>*</code> in price calculations</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 class="subsection-title" style="margin-top: 6px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+        Common Debugging Techniques (8 Proven Practices)
+      </h3>
+
+      <div class="grid-2">
+        <div class="card card-tinted">
+          <ul class="bullet-list">
+            <li><strong>Read error messages carefully:</strong> Inspect line numbers &amp; stack traces.</li>
+            <li><strong>Use console.log() to inspect values:</strong> Print state variables at runtime.</li>
+            <li><strong>Use breakpoints to pause execution:</strong> Freeze code at exact statements.</li>
+            <li><strong>Step through code one statement at a time:</strong> Monitor control flows.</li>
+          </ul>
+        </div>
+        <div class="card card-tinted">
+          <ul class="bullet-list">
+            <li><strong>Inspect variables &amp; call stack:</strong> Trace ancestor function calls.</li>
+            <li><strong>Check Network requests:</strong> Identify failed API payloads or 404/500s.</li>
+            <li><strong>Reproduce with a small example:</strong> Isolate bugs in minimal testbeds.</li>
+            <li><strong>Test the fix after making changes:</strong> Perform regression verification.</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="subsection-title" style="margin-top: 4px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+        Example: Finding a Logical Error
+      </h3>
+
+      <div class="grid-2">
+        <div class="code-container" style="margin:0;">
+          <div class="code-header"><span>Incorrect Code (Logical Bug)</span></div>
+          <pre><span class="kw">let</span> price = <span class="num">100</span>;
+<span class="kw">let</span> quantity = <span class="num">3</span>;
+<span class="kw">let</span> total = price + quantity;
+<span class="fn">console.log</span>(total);
+<span class="comment">// 103, but expected is 300</span></pre>
+        </div>
+        <div class="code-container" style="margin:0;">
+          <div class="code-header"><span>Correct Code (Fixed Operator)</span></div>
+          <pre><span class="kw">let</span> price = <span class="num">100</span>;
+<span class="kw">let</span> quantity = <span class="num">3</span>;
+<span class="kw">let</span> total = price * quantity;
+<span class="fn">console.log</span>(total);
+<span class="comment">// 300 (Correct mathematical product)</span></pre>
+        </div>
+      </div>
+
+      <div class="running-footer">
+        <span>4.1.4 Debugging Techniques &bull; Error Taxonomy &amp; Logical Error Identification</span>
+        <span class="tag-pill">Page 11 of 24</span>
+      </div>
+    </div>
+    
+    <div class="page">
+      <div class="running-header">
+        <div class="brand">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          <span>KnowledgeHub Curriculum</span>
+        </div>
+        <div>Unit 4 &bull; 4.1.4 Breakpoint Debugging</div>
+      </div>
+
+      <div class="unit-badge">Module 4.1.4 &bull; Advanced Debugging</div>
+      <h2 class="section-title">Breakpoints, The Debugger Keyword &amp; Workflows</h2>
+
+      <div class="grid-2">
+        <div>
+          <h3 class="subsection-title">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+            Using console.log()
+          </h3>
+          <div class="code-container">
+            <div class="code-header"><span>JavaScript &bull; State Logging</span></div>
+            <pre><span class="kw">let</span> marks = <span class="num">72</span>;
+<span class="fn">console.log</span>(<span class="str">"marks ="</span>, marks);
+
+<span class="kw">if</span> (marks &gt;= <span class="num">40</span>) {
+  <span class="fn">console.log</span>(<span class="str">"Pass"</span>);
+} <span class="kw">else</span> {
+  <span class="fn">console.log</span>(<span class="str">"Fail"</span>);
+}</pre>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="subsection-title">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><rect x="9" y="9" width="6" height="6"></rect></svg>
+            Using debugger Statement
+          </h3>
+          <div class="code-container">
+            <div class="code-header"><span>JavaScript &bull; Programmatic Breakpoint</span></div>
+            <pre><span class="kw">let</span> a = <span class="num">10</span>;
+<span class="kw">let</span> b = <span class="num">20</span>;
+
+<span class="kw">debugger</span>; <span class="comment">// Pauses here when open</span>
+
+<span class="kw">let</span> sum = a + b;
+<span class="fn">console.log</span>(sum);</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="subsection-title" style="margin-top: 8px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+        Breakpoint-Based Debugging Workflow (6 Essential Steps)
+      </h3>
+
+      <div class="card card-tinted" style="padding:10px 14px;">
+        <ul class="bullet-list">
+          <li><strong>1. Open the Sources or Debugger panel:</strong> Navigate to the Sources tab inside DevTools.</li>
+          <li><strong>2. Open the JavaScript file:</strong> Browse the file tree to locate the target application script.</li>
+          <li><strong>3. Click the line number to set a breakpoint:</strong> A blue/amber marker indicates an active pause point.</li>
+          <li><strong>4. Perform the action that runs the code:</strong> Click a button, submit a form, or trigger an event.</li>
+          <li><strong>5. Inspect variable values:</strong> Hover over identifiers or examine the Scope variables panel.</li>
+          <li><strong>6. Use Step Over, Step Into, or Resume:</strong> Carefully follow code line-by-line to pinpoint issues.</li>
+        </ul>
+      </div>
+
+      <div class="card card-amber" style="margin-top: 8px;">
+        <h3 class="subsection-title" style="color:#92400e; margin-top:0;">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          Good Debugging Practice &amp; Engineering Philosophy
+        </h3>
+        <p style="font-size:12.8px; color:#78350f; line-height:1.48;">
+          <strong>Fix the underlying cause rather than hiding the error.</strong> After a fix, repeat the steps that originally produced the issue and run relevant tests to avoid regressions in related modules.
+        </p>
+      </div>
+
+      <div class="running-footer">
+        <span>4.1.4 Debugging Techniques &bull; Breakpoint Workflows &amp; Professional Philosophy</span>
+        <span class="tag-pill">Page 12 of 24</span>
+      </div>
+    </div>
+    
+    <div class="page">
+      <div class="running-header">
+        <div class="brand">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          <span>KnowledgeHub Curriculum</span>
+        </div>
+        <div>Unit 4 &bull; 4.3 AJAX (Asynchronous JavaScript)</div>
+      </div>
+
+      <div class="unit-badge">Module 4.3 &bull; Asynchronous Communication</div>
+      <h2 class="section-title">AJAX: Asynchronous Web Architecture</h2>
+
+      <div class="card card-tinted">
+        <h3 class="subsection-title">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+          What is AJAX?
+        </h3>
+        <p style="font-size:13px; color:#334155; line-height:1.5;">
+          <strong>AJAX</strong> stands for <strong>Asynchronous JavaScript and XML</strong>. It is a technique that allows a webpage to send or receive data from a server without reloading the entire page.
+        </p>
+        <p style="font-size:12.5px; color:#64748b; margin-top:3px;">
+          Despite the word XML in its name, modern AJAX applications commonly exchange <strong>JSON</strong> data.
+        </p>
+      </div>
+
+      <div class="definition-box">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+        <span><strong>Simple Definition:</strong> AJAX = Communicating with a server and updating part of a webpage without a full page reload</span>
+      </div>
+
+      <h3 class="subsection-title" style="margin-top: 8px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line><line x1="4" y1="4" x2="9" y2="9"></line></svg>
+        Without AJAX vs With AJAX Architectural Workflows
+      </h3>
+
+      <div class="grid-2">
+        <div class="card card-rose">
+          <strong style="color:#be123c; font-size:13px; display:block; margin-bottom:4px;">Traditional Workflow: Without AJAX</strong>
+          <div style="font-size:12px; color:#334155; line-height:1.6;">
+            <strong>1.</strong> User submits a request (e.g. clicks form submit)<br>
+            &nbsp;&nbsp;&nbsp;&darr;<br>
+            <strong>2.</strong> Browser discards screen &amp; loads a new page<br>
+            &nbsp;&nbsp;&nbsp;&darr;<br>
+            <strong>3.</strong> Server returns the entire page HTML<br>
+            <span style="font-size:11px; color:#be123c; font-weight:700;">Result: Jarring screen flicker, wasted bandwidth</span>
+          </div>
+        </div>
+
+        <div class="card card-emerald">
+          <strong style="color:#047857; font-size:13px; display:block; margin-bottom:4px;">Modern Workflow: With AJAX</strong>
+          <div style="font-size:12px; color:#334155; line-height:1.6;">
+            <strong>1.</strong> User performs an action (types, clicks button)<br>
+            &nbsp;&nbsp;&nbsp;&darr;<br>
+            <strong>2.</strong> JavaScript sends background request<br>
+            &nbsp;&nbsp;&nbsp;&darr;<br>
+            <strong>3.</strong> Server returns data (JSON)<br>
+            &nbsp;&nbsp;&nbsp;&darr;<br>
+            <strong>4.</strong> JavaScript updates part of the page dynamically<br>
+            <span style="font-size:11px; color:#047857; font-weight:700;">Result: Instantaneous, app-like seamless UI</span>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="subsection-title" style="margin-top: 8px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+        Where is AJAX Used? Real-World Applications
+      </h3>
+
+      <div class="grid-3">
+        <div class="card card-tinted">
+          <strong style="color:#0f172a; font-size:12px;">&bull; Searching Suggestions</strong>
+          <p style="font-size:11.5px; color:#64748b;">Live autocomplete as the user types into search inputs.</p>
+        </div>
+        <div class="card card-tinted">
+          <strong style="color:#0f172a; font-size:12px;">&bull; Loading Comments</strong>
+          <p style="font-size:11.5px; color:#64748b;">Fetching comment threads without reloading articles.</p>
+        </div>
+        <div class="card card-tinted">
+          <strong style="color:#0f172a; font-size:12px;">&bull; Updating Shopping Carts</strong>
+          <p style="font-size:11.5px; color:#64748b;">Changing quantity and price tallies on e-commerce sites.</p>
+        </div>
+        <div class="card card-tinted">
+          <strong style="color:#0f172a; font-size:12px;">&bull; Background Forms</strong>
+          <p style="font-size:11.5px; color:#64748b;">Submitting forms seamlessly without leaving current screen.</p>
+        </div>
+        <div class="card card-tinted">
+          <strong style="color:#0f172a; font-size:12px;">&bull; Infinite Scrolling</strong>
+          <p style="font-size:11.5px; color:#64748b;">Loading more social feed items as user scrolls down.</p>
+        </div>
+        <div class="card card-tinted">
+          <strong style="color:#0f172a; font-size:12px;">&bull; Live Dashboard Data</strong>
+          <p style="font-size:11.5px; color:#64748b;">Streaming live sports scores, chat, or stock prices.</p>
+        </div>
+      </div>
+
+      <div class="running-footer">
+        <span>4.3 AJAX (Asynchronous JavaScript) &bull; Architecture &amp; Use Cases</span>
+        <span class="tag-pill">Page 13 of 24</span>
+      </div>
+    </div>
+    
+    <div class="page">
+      <div class="running-header">
+        <div class="brand">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          <span>KnowledgeHub Curriculum</span>
+        </div>
+        <div>Unit 4 &bull; 4.3 Modern Fetch API &amp; Handlers</div>
+      </div>
+
+      <div class="unit-badge">Module 4.3 &bull; Modern Web Protocols</div>
+      <h2 class="section-title">Fetching Data with JavaScript (Fetch API)</h2>
+
+      <p style="font-size:13px; color:#475569; margin-bottom:4px;">
+        <strong>Example: Fetching Data with JavaScript</strong> &mdash; The modern <code>fetch()</code> API is commonly used for AJAX-style requests.
+      </p>
+
+      <div class="code-container">
+        <div class="code-header">
+          <div class="code-dots"><div class="code-dot dot-red"></div><div class="code-dot dot-yellow"></div><div class="code-dot dot-green"></div></div>
+          <span>HTML + JS &bull; Async/Await AJAX Implementation</span>
+        </div>
+        <pre><span class="punct">&lt;!</span><span class="kw">doctype</span> <span class="attr">html</span><span class="punct">&gt;</span>
+<span class="punct">&lt;</span><span class="tag">html</span> <span class="attr">lang</span>=<span class="str">"en"</span><span class="punct">&gt;</span>
+<span class="punct">&lt;</span><span class="tag">head</span><span class="punct">&gt;</span>
+  <span class="punct">&lt;</span><span class="tag">meta</span> <span class="attr">charset</span>=<span class="str">"utf-8"</span><span class="punct">&gt;</span>
+  <span class="punct">&lt;</span><span class="tag">meta</span> <span class="attr">name</span>=<span class="str">"viewport"</span> <span class="attr">content</span>=<span class="str">"width=device-width, initial-scale=1"</span><span class="punct">&gt;</span>
+  <span class="punct">&lt;</span><span class="tag">title</span><span class="punct">&gt;</span>AJAX Example<span class="punct">&lt;/</span><span class="tag">title</span><span class="punct">&gt;</span>
+<span class="punct">&lt;/</span><span class="tag">head</span><span class="punct">&gt;</span>
+<span class="punct">&lt;</span><span class="tag">body</span><span class="punct">&gt;</span>
+  <span class="punct">&lt;</span><span class="tag">h2</span><span class="punct">&gt;</span>User Details<span class="punct">&lt;/</span><span class="tag">h2</span><span class="punct">&gt;</span>
+  <span class="punct">&lt;</span><span class="tag">button</span> <span class="attr">id</span>=<span class="str">"loadBtn"</span><span class="punct">&gt;</span>Load User<span class="punct">&lt;/</span><span class="tag">button</span><span class="punct">&gt;</span>
+  <span class="punct">&lt;</span><span class="tag">p</span> <span class="attr">id</span>=<span class="str">"result"</span><span class="punct">&gt;</span>Click the button to load data.<span class="punct">&lt;/</span><span class="tag">p</span><span class="punct">&gt;</span>
+
+  <span class="punct">&lt;</span><span class="tag">script</span><span class="punct">&gt;</span>
+  <span class="fn">document.getElementById</span>(<span class="str">"loadBtn"</span>).<span class="fn">addEventListener</span>(<span class="str">"click"</span>, <span class="kw">async</span> () =&gt; {
+    <span class="kw">const</span> result = <span class="fn">document.getElementById</span>(<span class="str">"result"</span>);
+    result.textContent = <span class="str">"Loading..."</span>;
+    <span class="kw">try</span> {
+      <span class="kw">const</span> response = <span class="kw">await</span> <span class="fn">fetch</span>(<span class="str">"https://jsonplaceholder.typicode.com/users/1"</span>);
+      <span class="kw">if</span> (!response.ok) {
+        <span class="kw">throw new</span> <span class="fn">Error</span>(<span class="str">"Request failed: "</span> + response.status);
+      }
+      <span class="kw">const</span> user = <span class="kw">await</span> response.<span class="fn">json</span>();
+      result.textContent = <span class="str">`Name: ${user.name}, Email: ${user.email}`</span>;
+    } <span class="kw">catch</span> (error) {
+      result.textContent = <span class="str">"Could not load user details."</span>;
+      <span class="fn">console.error</span>(error);
+    }
+  });
+  <span class="punct">&lt;/</span><span class="tag">script</span><span class="punct">&gt;</span>
+<span class="punct">&lt;/</span><span class="tag">body</span><span class="punct">&gt;</span>
+<span class="punct">&lt;/</span><span class="tag">html</span><span class="punct">&gt;</span></pre>
+      </div>
+
+      <div class="card card-tinted" style="padding:5px 9px; margin-bottom:5px;">
+        <span style="font-size:11.8px; color:#64748b;"><strong>Network Requirement:</strong> This example uses a public demonstration API. It requires an internet connection.</span>
+      </div>
+
+      <h3 class="subsection-title" style="margin-top: 4px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+        Understanding the Example
+      </h3>
+
+      <ul class="bullet-list" style="margin-bottom:6px;">
+        <li><strong><code>fetch(url)</code></strong> &mdash; sends an asynchronous network request across HTTP.</li>
+        <li><strong><code>await response.json()</code></strong> &mdash; parses the returned JSON string into a native JS object.</li>
+        <li><strong><code>response.ok</code></strong> &mdash; checks whether the HTTP status is in the successful range (200&ndash;299).</li>
+        <li><strong><code>try...catch</code></strong> &mdash; handles network failure or parsing errors safely without crashing.</li>
+        <li><strong><code>textContent</code></strong> &mdash; updates the webpage DOM safely without parsing HTML tags.</li>
+      </ul>
+
+      <div class="grid-2">
+        <div class="card card-emerald">
+          <strong style="color:#047857; font-size:12.5px;">Benefits of AJAX</strong>
+          <ul class="bullet-list" style="margin-top:3px; font-size:11.8px;">
+            <li>Avoids reloading the entire webpage.</li>
+            <li>Can make interactions feel faster.</li>
+            <li>Transfers only the required data in many cases.</li>
+            <li>Supports dynamic, app-like user interfaces.</li>
+          </ul>
+        </div>
+        <div class="card card-amber">
+          <strong style="color:#92400e; font-size:12.5px;">Limitations and Considerations</strong>
+          <ul class="bullet-list" style="margin-top:3px; font-size:11.8px;">
+            <li>Network connection may fail or be slow.</li>
+            <li>Server may return unhandled errors.</li>
+            <li>Cross-origin requests may face CORS blocks.</li>
+            <li>Must display loading &amp; error states to users.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="running-footer">
+        <span>4.3 AJAX (Asynchronous JavaScript) &bull; Fetch API Code Breakdown &amp; Benefits</span>
+        <span class="tag-pill">Page 14 of 24</span>
+      </div>
+    </div>
+    
+    <div class="page">
+      <div class="running-header">
+        <div class="brand">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          <span>KnowledgeHub Curriculum</span>
+        </div>
+        <div>Unit 4 &bull; 4.4 JSON (Data Exchange Format)</div>
+      </div>
+
+      <div class="unit-badge">Module 4.4 &bull; Universal Data Interchange</div>
+      <h2 class="section-title">JSON (JavaScript Object Notation) Syntax</h2>
+
+      <div class="card card-tinted">
+        <h3 class="subsection-title">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+          What is JSON?
+        </h3>
+        <p style="font-size:13px; color:#334155; line-height:1.5;">
+          <strong>JSON</strong> stands for <strong>JavaScript Object Notation</strong>. It is a lightweight text format used to exchange structured data between applications, especially web clients and servers.
+        </p>
+      </div>
+
+      <div class="definition-box">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+        <span><strong>Simple Definition:</strong> JSON = A text format for representing and exchanging structured data</span>
+      </div>
+
+      <h3 class="subsection-title" style="margin-top: 6px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+        Example of JSON Data Structure
+      </h3>
+
+      <div class="code-container">
+        <div class="code-header">
+          <div class="code-dots"><div class="code-dot dot-red"></div><div class="code-dot dot-yellow"></div><div class="code-dot dot-green"></div></div>
+          <span>student.json &bull; Standard JSON Payload</span>
+        </div>
+        <pre>{
+  <span class="str">"name"</span>: <span class="str">"Rahul"</span>,
+  <span class="str">"age"</span>: <span class="num">20</span>,
+  <span class="str">"course"</span>: <span class="str">"BCA"</span>,
+  <span class="str">"isStudent"</span>: <span class="kw">true</span>,
+  <span class="str">"subjects"</span>: [<span class="str">"HTML"</span>, <span class="str">"CSS"</span>, <span class="str">"JavaScript"</span>]
+}</pre>
+      </div>
+
+      <h3 class="subsection-title" style="margin-top: 6px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><list></list><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+        JSON Data Types Reference
+      </h3>
+
+      <table class="custom-table">
+        <thead>
+          <tr>
+            <th style="width: 28%;">Data Type</th>
+            <th style="width: 32%;">JSON Syntax Example</th>
+            <th>Type Description &amp; Characteristics</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>String</code></td>
+            <td><code>"name": "Rahul"</code></td>
+            <td>Sequence of UTF-8 characters enclosed strictly in double quotes</td>
+          </tr>
+          <tr>
+            <td><code>Number</code></td>
+            <td><code>"age": 20</code></td>
+            <td>Integers or floating-point decimals; NO surrounding quotation marks</td>
+          </tr>
+          <tr>
+            <td><code>Boolean</code></td>
+            <td><code>"isStudent": true</code></td>
+            <td>Literal values: strictly lowercase <code>true</code> or <code>false</code></td>
+          </tr>
+          <tr>
+            <td><code>Null</code></td>
+            <td><code>"middleName": null</code></td>
+            <td>Represents intentional empty or nonexistent value in lowercase</td>
+          </tr>
+          <tr>
+            <td><code>Array</code></td>
+            <td><code>"subjects": ["HTML", "CSS"]</code></td>
+            <td>Ordered list of comma-separated values inside square brackets <code>[]</code></td>
+          </tr>
+          <tr>
+            <td><code>Object</code></td>
+            <td><code>"address": {"city": "Ahmedabad"}</code></td>
+            <td>Unordered collection of key-value pairs inside curly braces <code>{}</code></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 class="subsection-title" style="margin-top: 6px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#e11d48" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+        Important JSON Rules
+      </h3>
+
+      <div class="card card-rose" style="padding:6px 12px;">
+        <ul class="bullet-list" style="margin:0;">
+          <li>Property names must be enclosed in double quotes.</li>
+          <li>String values use double quotes (single quotes are illegal in JSON).</li>
+          <li>Numbers do not use quotation marks unless they are intended as text strings.</li>
+          <li>JSON uses <code>true</code>, <code>false</code>, and <code>null</code> in lowercase only.</li>
+          <li>JSON does not support comments (no <code>//</code> or <code>/* */</code>).</li>
+          <li>A trailing comma after the final property or array item is strictly not allowed.</li>
+        </ul>
+      </div>
+
+      <div class="running-footer">
+        <span>4.4 JSON (Data Exchange Format) &bull; Syntax, Data Types &amp; Formatting Rules</span>
+        <span class="tag-pill">Page 15 of 24</span>
+      </div>
+    </div>
+    
+    <div class="page">
+      <div class="running-header">
+        <div class="brand">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          <span>KnowledgeHub Curriculum</span>
+        </div>
+        <div>Unit 4 &bull; 4.4 JSON Serialization &amp; Parsing</div>
+      </div>
+
+      <div class="unit-badge">Module 4.4 &bull; JavaScript Integration</div>
+      <h2 class="section-title">JavaScript Object vs JSON: Stringify &amp; Parse</h2>
+
+      <h3 class="subsection-title">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line></svg>
+        JavaScript Object vs JSON Text
+      </h3>
+
+      <div class="grid-2">
+        <div class="code-container">
+          <div class="code-header"><span>JavaScript Object (In-Memory)</span></div>
+          <pre><span class="kw">const</span> student = {
+  name: <span class="str">"Rahul"</span>,
+  age: <span class="num">20</span>
+};</pre>
+        </div>
+        <div class="code-container">
+          <div class="code-header"><span>JSON Text (Serialized String)</span></div>
+          <pre><span class="kw">const</span> jsonText =
+  <span class="str">'{"name":"Rahul","age":20}'</span>;</pre>
+        </div>
+      </div>
+
+      <div class="card card-blue" style="margin-bottom:8px;">
+        <p style="font-size:12.8px; color:#1e293b;">
+          <strong>Core Distinction:</strong> A <strong>JavaScript object</strong> is an in-memory runtime value with methods and prototypes; <strong>JSON</strong> is a raw text representation that can be transmitted across networks or saved to storage.
+        </p>
+      </div>
+
+      <div class="grid-2">
+        <div>
+          <h3 class="subsection-title" style="margin-top:0;">Converting JS Object to JSON</h3>
+          <p style="font-size:12.5px; color:#475569; margin-bottom:3px;">Use <strong><code>JSON.stringify()</code></strong>.</p>
+          <div class="code-container">
+            <div class="code-header"><span>JavaScript Code</span></div>
+            <pre><span class="kw">const</span> student = {
+  name: <span class="str">"Rahul"</span>,
+  age: <span class="num">20</span>
+};
+<span class="kw">const</span> jsonText = <span class="fn">JSON.stringify</span>(student);
+<span class="fn">console.log</span>(jsonText);</pre>
+          </div>
+          <div class="output-box">
+            <span class="output-badge">Output:</span>
+            <span>{"name":"Rahul","age":20}</span>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="subsection-title" style="margin-top:0;">Converting JSON to JS Object</h3>
+          <p style="font-size:12.5px; color:#475569; margin-bottom:3px;">Use <strong><code>JSON.parse()</code></strong>.</p>
+          <div class="code-container">
+            <div class="code-header"><span>JavaScript Code</span></div>
+            <pre><span class="kw">const</span> jsonText = <span class="str">'{"name":"Rahul","age":20}'</span>;
+<span class="kw">const</span> student = <span class="fn">JSON.parse</span>(jsonText);
+<span class="fn">console.log</span>(student.name);
+<span class="fn">console.log</span>(student.age);</pre>
+          </div>
+          <div class="output-box">
+            <span class="output-badge">Output:</span>
+            <span>Rahul &bull; 20</span>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="subsection-title" style="margin-top: 8px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+        Why is JSON Popular?
+      </h3>
+
+      <div class="grid-2">
+        <div class="card card-tinted">
+          <ul class="bullet-list">
+            <li><strong>Easy for people to read and write:</strong> Clean key-value syntax.</li>
+            <li><strong>Supported by most programming languages:</strong> Python, Java, C#, PHP.</li>
+          </ul>
+        </div>
+        <div class="card card-tinted">
+          <ul class="bullet-list">
+            <li><strong>Suitable for API requests &amp; responses:</strong> Compact payload size.</li>
+            <li><strong>Works seamlessly with JavaScript:</strong> Native engine support.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card card-amber" style="margin-top: 6px;">
+        <strong style="color:#92400e; font-size:12.5px;">Security &amp; Robustness Precaution:</strong>
+        <p style="font-size:12.3px; color:#78350f; margin-top:2px;">
+          <strong>Important:</strong> Only parse trusted or validated data appropriately. Invalid JSON causes <code>JSON.parse()</code> to throw a fatal syntax error, so wrap parsing logic inside <code>try...catch</code> blocks.
+        </p>
+      </div>
+
+      <div class="running-footer">
+        <span>4.4 JSON (Data Exchange Format) &bull; Serialization, Parsing &amp; Robustness</span>
+        <span class="tag-pill">Page 16 of 24</span>
+      </div>
+    </div>
+    
+    <div class="page">
+      <div class="running-header">
+        <div class="brand">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          <span>KnowledgeHub Curriculum</span>
+        </div>
+        <div>Unit 4 &bull; 3.2.2 Introduction to APIs</div>
+      </div>
+
+      <div class="unit-badge">Module 3.2.2 &bull; Interface Contracts</div>
+      <h2 class="section-title">Introduction to APIs (Application Programming Interfaces)</h2>
+
+      <div class="card card-tinted">
+        <h3 class="subsection-title">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+          What is an API?
+        </h3>
+        <p style="font-size:13px; color:#334155; line-height:1.5;">
+          <strong>API</strong> stands for <strong>Application Programming Interface</strong>. An API defines how one software application can request services or data from another application.
+        </p>
+      </div>
+
+      <div class="definition-box">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+        <span><strong>Simple Definition:</strong> API = A defined way for software applications to communicate</span>
+      </div>
+
+      <div class="card card-blue" style="margin-top: 8px;">
+        <h3 class="subsection-title" style="color:#1d4ed8; margin-top:0;">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="2.2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
+          Real-Life Analogy: The Restaurant Waiter
+        </h3>
+        <p style="font-size:12.8px; color:#1e293b; line-height:1.5;">
+          A restaurant customer orders food through a waiter. The waiter carries the order to the kitchen and brings back the result. Similarly, an <strong>API receives a request</strong> from a client, passes it to a service or backend database, and returns a <strong>structured response</strong>.
+        </p>
+      </div>
+
+      <h3 class="subsection-title" style="margin-top: 8px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+        How a Web API Works Architecture
+      </h3>
+
+      <div class="flow-container">
+        <div class="flow-step">
+          <strong>Web Browser / Client</strong><br>
+          <span style="font-size:10px; color:#64748b;">Frontend UI</span>
+        </div>
+        <div class="flow-arrow">&rarr; HTTP request &rarr;</div>
+        <div class="flow-step active">
+          <strong>Web API / Server</strong><br>
+          <span style="font-size:10px; color:#1d4ed8;">Process request or access data</span>
+        </div>
+        <div class="flow-arrow">&rarr; HTTP response &rarr;</div>
+        <div class="flow-step">
+          <strong>Web Browser / Client</strong><br>
+          <span style="font-size:10px; color:#64748b;">Render View</span>
+        </div>
+      </div>
+
+      <h3 class="subsection-title" style="margin-top: 8px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+        Types of APIs
+      </h3>
+
+      <div class="grid-2">
+        <div class="card card-tinted">
+          <strong style="color:#0f172a; font-size:12.5px;">&bull; Web APIs</strong>
+          <p style="font-size:11.8px; color:#475569;">Communicate over standard web protocols such as HTTP/HTTPS.</p>
+        </div>
+        <div class="card card-tinted">
+          <strong style="color:#0f172a; font-size:12.5px;">&bull; Library APIs</strong>
+          <p style="font-size:11.8px; color:#475569;">Provide classes, methods, and functions from a software library.</p>
+        </div>
+        <div class="card card-tinted">
+          <strong style="color:#0f172a; font-size:12.5px;">&bull; Operating System APIs</strong>
+          <p style="font-size:11.8px; color:#475569;">Allow applications to access OS hardware, files, and threads.</p>
+        </div>
+        <div class="card card-tinted">
+          <strong style="color:#0f172a; font-size:12.5px;">&bull; Public &amp; Private APIs</strong>
+          <p style="font-size:11.8px; color:#475569;">Public APIs are open for external devs; Private APIs are internal.</p>
+        </div>
+      </div>
+
+      <div class="running-footer">
+        <span>3.2.2 Introduction to APIs &bull; Definitions, Restaurant Analogy &amp; Types</span>
+        <span class="tag-pill">Page 17 of 24</span>
+      </div>
+    </div>
+    
+    <div class="page">
+      <div class="running-header">
+        <div class="brand">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          <span>KnowledgeHub Curriculum</span>
+        </div>
+        <div>Unit 4 &bull; 3.2.2 HTTP Methods, Codes &amp; Calling APIs</div>
+      </div>
+
+      <div class="unit-badge">Module 3.2.2 &bull; Communication Protocols</div>
+      <h2 class="section-title">HTTP Methods, Status Codes &amp; Calling an API</h2>
+
+      <div class="grid-2">
+        <div>
+          <h3 class="subsection-title">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+            Common HTTP Methods
+          </h3>
+          <table class="custom-table" style="margin:2px 0;">
+            <thead>
+              <tr>
+                <th style="width: 32%;">Method</th>
+                <th>Common Purpose</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><code>GET</code></td><td>Retrieve data from server</td></tr>
+              <tr><td><code>POST</code></td><td>Submit data or create resource</td></tr>
+              <tr><td><code>PUT</code></td><td>Replace an entire resource</td></tr>
+              <tr><td><code>PATCH</code></td><td>Partially update a resource</td></tr>
+              <tr><td><code>DELETE</code></td><td>Delete a specific resource</td></tr>
+            </tbody>
+          </table>
+          <span style="font-size:11px; color:#64748b;">Note: Exact behavior depends on API design.</span>
+        </div>
+
+        <div>
+          <h3 class="subsection-title">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+            Common HTTP Status Codes
+          </h3>
+          <table class="custom-table" style="margin:2px 0;">
+            <thead>
+              <tr>
+                <th style="width: 38%;">Status Code</th>
+                <th>Standard Meaning</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><code style="color:#059669;">200 OK</code></td><td>Request succeeded</td></tr>
+              <tr><td><code style="color:#059669;">201 Created</code></td><td>Resource was created</td></tr>
+              <tr><td><code style="color:#d97706;">400 Bad Req</code></td><td>Request is invalid</td></tr>
+              <tr><td><code style="color:#d97706;">401 Unauth</code></td><td>Auth required or invalid</td></tr>
+              <tr><td><code style="color:#e11d48;">403 Forbid</code></td><td>Server refuses access</td></tr>
+              <tr><td><code style="color:#e11d48;">404 Not Found</code></td><td>Resource not found</td></tr>
+              <tr><td><code style="color:#e11d48;">500 Error</code></td><td>Server unexpected error</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <h3 class="subsection-title" style="margin-top: 8px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+        Example: Calling an API with Async/Await
+      </h3>
+
+      <div class="code-container">
+        <div class="code-header">
+          <div class="code-dots"><div class="code-dot dot-red"></div><div class="code-dot dot-yellow"></div><div class="code-dot dot-green"></div></div>
+          <span>JavaScript &bull; Production API Request Function</span>
+        </div>
+        <pre><span class="kw">async function</span> <span class="fn">loadPost</span>() {
+  <span class="kw">try</span> {
+    <span class="kw">const</span> response = <span class="kw">await</span> <span class="fn">fetch</span>(
+      <span class="str">"https://jsonplaceholder.typicode.com/posts/1"</span>
+    );
+    <span class="kw">if</span> (!response.ok) {
+      <span class="kw">throw new</span> <span class="fn">Error</span>(<span class="str">`HTTP error: ${response.status}`</span>);
+    }
+    <span class="kw">const</span> post = <span class="kw">await</span> response.<span class="fn">json</span>();
+    <span class="fn">console.log</span>(post.title);
+    <span class="fn">console.log</span>(post.body);
+  } <span class="kw">catch</span> (error) {
+    <span class="fn">console.error</span>(<span class="str">"Unable to load post:"</span>, error);
+  }
+}
+
+<span class="fn">loadPost</span>();</pre>
+      </div>
+
+      <div class="card card-tinted" style="margin-top: 4px;">
+        <span style="font-size:12px; color:#475569;">
+          <strong>Error Boundary Design:</strong> Inspecting <code>response.ok</code> guarantees that HTTP 4xx or 5xx status codes trigger catch handlers, preventing silent UI failures in single-page apps.
+        </span>
+      </div>
+
+      <div class="running-footer">
+        <span>3.2.2 Introduction to APIs &bull; HTTP Verbs, Status Codes &amp; Fetching Posts</span>
+        <span class="tag-pill">Page 18 of 24</span>
+      </div>
+    </div>
+    
+    <div class="page">
+      <div class="running-header">
+        <div class="brand">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          <span>KnowledgeHub Curriculum</span>
+        </div>
+        <div>Unit 4 &bull; 3.2.2 API vs AJAX vs JSON &amp; Practices</div>
+      </div>
+
+      <div class="unit-badge">Module 3.2.2 &bull; Architectural Comparison</div>
+      <h2 class="section-title">API vs AJAX vs JSON &amp; API Best Practices</h2>
+
+      <h3 class="subsection-title">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+        API vs AJAX vs JSON Matrix
+      </h3>
+
+      <table class="custom-table">
+        <thead>
+          <tr>
+            <th style="width: 25%;">Term</th>
+            <th>Meaning &amp; Exact System Role</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong style="color:#2563eb; font-size:13px;">API</strong></td>
+            <td>Defines how software components communicate with one another (the interface contract).</td>
+          </tr>
+          <tr>
+            <td><strong style="color:#059669; font-size:13px;">AJAX</strong></td>
+            <td>Technique for making asynchronous web requests from the client without page reloading.</td>
+          </tr>
+          <tr>
+            <td><strong style="color:#d97706; font-size:13px;">JSON</strong></td>
+            <td>Text format often used to exchange data between client and server across the network.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="card card-purple" style="margin-top: 6px;">
+        <strong style="color:#6d28d9; font-size:13px; display:block; margin-bottom:3px;">Conceptual Relationship</strong>
+        <p style="font-size:12.8px; color:#334155; line-height:1.5;">
+          These terms are related, but they are not interchangeable. An <strong>AJAX request</strong> may call a <strong>web API</strong>, and the API may return data formatted as <strong>JSON</strong>.
+        </p>
+      </div>
+
+      <h3 class="subsection-title" style="margin-top: 8px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        API Best Practices (Production Checklist)
+      </h3>
+
+      <div class="grid-2">
+        <div class="card card-tinted">
+          <strong style="color:#0f172a; font-size:12.5px;">&bull; Read the API Documentation</strong>
+          <p style="font-size:11.8px; color:#475569;">Study endpoints, required headers, query parameters, and auth tokens.</p>
+        </div>
+        <div class="card card-tinted">
+          <strong style="color:#0f172a; font-size:12.5px;">&bull; Handle Unsuccessful HTTP Responses</strong>
+          <p style="font-size:11.8px; color:#475569;">Provide user-friendly fallback UI when 4xx or 5xx codes occur.</p>
+        </div>
+        <div class="card card-tinted">
+          <strong style="color:#0f172a; font-size:12.5px;">&bull; Validate Data on the Server</strong>
+          <p style="font-size:11.8px; color:#475569;">Never trust client payloads; enforce strict server-side schema verification.</p>
+        </div>
+        <div class="card card-rose">
+          <strong style="color:#be123c; font-size:12.5px;">&bull; Protect API Keys &amp; Secrets</strong>
+          <p style="font-size:11.8px; color:#475569;">Keep API keys out of public client-side JS when confidentiality is required.</p>
+        </div>
+        <div class="card card-tinted">
+          <strong style="color:#0f172a; font-size:12.5px;">&bull; Use Authentication &amp; Authorization</strong>
+          <p style="font-size:11.8px; color:#475569;">Enforce OAuth2, JWTs, or session tokens for private data endpoints.</p>
+        </div>
+        <div class="card card-tinted">
+          <strong style="color:#0f172a; font-size:12.5px;">&bull; Respect Rate Limits &amp; Terms</strong>
+          <p style="font-size:11.8px; color:#475569;">Avoid flooding endpoints to prevent temporary IP bans and service throttling.</p>
+        </div>
+      </div>
+
+      <div class="running-footer">
+        <span>3.2.2 Introduction to APIs &bull; Conceptual Comparison &amp; Production Security</span>
+        <span class="tag-pill">Page 19 of 24</span>
+      </div>
+    </div>
+    
+    <div class="page">
+      <div class="running-header">
+        <div class="brand">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          <span>KnowledgeHub Curriculum</span>
+        </div>
+        <div>Unit 4 &bull; 3.2.3 Basic UI/UX Principles</div>
+      </div>
+
+      <div class="unit-badge">Module 3.2.3 &bull; User-Centered Design</div>
+      <h2 class="section-title">UI vs UX Design &amp; Foundational Principles</h2>
+
+      <div class="grid-2">
+        <div class="card card-tinted">
+          <h3 class="subsection-title">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+            What is UI?
+          </h3>
+          <p style="font-size:12.8px; color:#334155; line-height:1.5;">
+            <strong>UI (User Interface)</strong> refers to the visible and interactive elements through which a person uses an application, such as buttons, menus, forms, icons, and page layouts.
+          </p>
+        </div>
+
+        <div class="card card-tinted">
+          <h3 class="subsection-title">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            What is UX?
+          </h3>
+          <p style="font-size:12.8px; color:#334155; line-height:1.5;">
+            <strong>UX (User Experience)</strong> refers to the overall experience a person has while using a product, including ease of use, efficiency, clarity, and satisfaction.
+          </p>
+        </div>
+      </div>
+
+      <h3 class="subsection-title" style="margin-top: 6px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+        UI vs UX: Core Differences Matrix
+      </h3>
+
+      <table class="custom-table">
+        <thead>
+          <tr>
+            <th style="width: 20%;">Dimension</th>
+            <th style="width: 40%;">UI (User Interface)</th>
+            <th style="width: 40%;">UX (User Experience)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Focus</strong></td>
+            <td>Focuses on the interface's appearance and controls</td>
+            <td>Focuses on the overall user journey and experience</td>
+          </tr>
+          <tr>
+            <td><strong>Components</strong></td>
+            <td>Includes typography, colors, buttons, and layout</td>
+            <td>Includes usability, navigation, task completion, and feedback</td>
+          </tr>
+          <tr>
+            <td><strong>Key Question</strong></td>
+            <td>Asks: <em>"What does the interface look like?"</em></td>
+            <td>Asks: <em>"How easy and useful is it to use?"</em></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 class="subsection-title" style="margin-top: 6px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+        Basic UI/UX Principles (Foundations 1 to 6)
+      </h3>
+
+      <div class="grid-3">
+        <div class="card card-tinted">
+          <strong style="color:#0f172a; font-size:12.5px;">1. Simplicity</strong>
+          <p style="font-size:11.5px; color:#475569;">Keep interfaces clear and avoid unnecessary elements.</p>
+        </div>
+        <div class="card card-tinted">
+          <strong style="color:#0f172a; font-size:12.5px;">2. Consistency</strong>
+          <p style="font-size:11.5px; color:#475569;">Use consistent colors, fonts, button styles, spacing, and patterns.</p>
+        </div>
+        <div class="card card-tinted">
+          <strong style="color:#0f172a; font-size:12.5px;">3. Visual Hierarchy</strong>
+          <p style="font-size:11.5px; color:#475569;">Make important info stand out via size, spacing, contrast &amp; placement.</p>
+        </div>
+        <div class="card card-tinted">
+          <strong style="color:#0f172a; font-size:12.5px;">4. Clear Navigation</strong>
+          <p style="font-size:11.5px; color:#475569;">Users should understand where they are and how to reach pages.</p>
+        </div>
+        <div class="card card-tinted">
+          <strong style="color:#0f172a; font-size:12.5px;">5. Feedback</strong>
+          <p style="font-size:11.5px; color:#475569;">Provide visible responses when clicking buttons, submitting, or on error.</p>
+        </div>
+        <div class="card card-tinted">
+          <strong style="color:#0f172a; font-size:12.5px;">6. Accessibility</strong>
+          <p style="font-size:11.5px; color:#475569;">Design interfaces usable by people with diverse abilities and inputs.</p>
+        </div>
+      </div>
+
+      <div class="running-footer">
+        <span>3.2.3 Basic UI/UX Principles &bull; UI vs UX Differences &amp; Core Tenets</span>
+        <span class="tag-pill">Page 20 of 24</span>
+      </div>
+    </div>
+    
+    <div class="page">
+      <div class="running-header">
+        <div class="brand">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          <span>KnowledgeHub Curriculum</span>
+        </div>
+        <div>Unit 4 &bull; 3.2.3 Form Design &amp; UX Evaluation</div>
+      </div>
+
+      <div class="unit-badge">Module 3.2.3 &bull; Usability Engineering</div>
+      <h2 class="section-title">UI/UX Principles (Cont.), Forms &amp; UX Testing</h2>
+
+      <div class="grid-3">
+        <div class="card card-tinted">
+          <strong style="color:#0f172a; font-size:12.5px;">7. Responsive Design</strong>
+          <p style="font-size:11.8px; color:#475569;">Ensure content works seamlessly across different screen sizes and orientations.</p>
+        </div>
+        <div class="card card-tinted">
+          <strong style="color:#0f172a; font-size:12.5px;">8. Error Prevention &amp; Recovery</strong>
+          <p style="font-size:11.8px; color:#475569;">Use helpful labels, validation, confirmation for destructive actions, and recovery steps.</p>
+        </div>
+        <div class="card card-tinted">
+          <strong style="color:#0f172a; font-size:12.5px;">9. Readability</strong>
+          <p style="font-size:11.8px; color:#475569;">Use legible text, suitable line spacing, meaningful headings, and adequate contrast.</p>
+        </div>
+      </div>
+
+      <h3 class="subsection-title" style="margin-top: 6px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+        Example: Poor vs Better Form Design
+      </h3>
+
+      <div class="grid-2">
+        <div>
+          <div class="card card-rose" style="margin-bottom:4px;">
+            <strong style="color:#be123c; font-size:12.5px;">Poor Design (Anti-Pattern)</strong>
+            <p style="font-size:11.5px; color:#64748b;">Missing visible label, ambiguous placeholder, generic submit.</p>
+          </div>
+          <div class="code-container">
+            <pre><span class="punct">&lt;</span><span class="tag">input</span> <span class="attr">placeholder</span>=<span class="str">"Enter data"</span><span class="punct">&gt;</span>
+<span class="punct">&lt;</span><span class="tag">button</span><span class="punct">&gt;</span>Go<span class="punct">&lt;/</span><span class="tag">button</span><span class="punct">&gt;</span></pre>
+          </div>
+        </div>
+
+        <div>
+          <div class="card card-emerald" style="margin-bottom:4px;">
+            <strong style="color:#047857; font-size:12.5px;">Improved Design (Accessible &amp; Clear)</strong>
+            <p style="font-size:11.5px; color:#64748b;">Explicit label, email validation constraint, meaningful action.</p>
+          </div>
+          <div class="code-container">
+            <pre><span class="punct">&lt;</span><span class="tag">form</span><span class="punct">&gt;</span>
+  <span class="punct">&lt;</span><span class="tag">label</span> <span class="attr">for</span>=<span class="str">"email"</span><span class="punct">&gt;</span>Email address<span class="punct">&lt;/</span><span class="tag">label</span><span class="punct">&gt;</span>
+  <span class="punct">&lt;</span><span class="tag">input</span> <span class="attr">id</span>=<span class="str">"email"</span> <span class="attr">name</span>=<span class="str">"email"</span>
+         <span class="attr">type</span>=<span class="str">"email"</span> <span class="attr">required</span><span class="punct">&gt;</span>
+  <span class="punct">&lt;</span><span class="tag">button</span> <span class="attr">type</span>=<span class="str">"submit"</span><span class="punct">&gt;</span>Submit<span class="punct">&lt;/</span><span class="tag">button</span><span class="punct">&gt;</span>
+<span class="punct">&lt;/</span><span class="tag">form</span><span class="punct">&gt;</span></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-blue" style="margin-top: 4px;">
+        <p style="font-size:12.5px; color:#1e293b;">
+          <strong>Design Rationale:</strong> The improved example provides a clear label, a suitable input type (<code>type="email"</code> activates mobile keyboards), and a required-field constraint. A complete application should also provide understandable validation feedback.
+        </p>
+      </div>
+
+      <h3 class="subsection-title" style="margin-top: 8px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+        How to Evaluate UX (5 User-Testing Protocols)
+      </h3>
+
+      <div class="card card-tinted" style="padding:8px 12px;">
+        <ul class="bullet-list" style="margin:0;">
+          <li><strong>Ask users to complete realistic tasks:</strong> Test genuine workflows rather than artificial clicks.</li>
+          <li><strong>Observe where they hesitate or make mistakes:</strong> Uncover cognitive friction and points of confusion.</li>
+          <li><strong>Check whether labels and messages are understandable:</strong> Ensure jargon-free terminology.</li>
+          <li><strong>Test on mobile and desktop devices:</strong> Audit touch target sizes, tap responsiveness, and viewports.</li>
+          <li><strong>Improve the design based on evidence and feedback:</strong> Iterate based on behavioral observations.</li>
+        </ul>
+      </div>
+
+      <div class="running-footer">
+        <span>3.2.3 Basic UI/UX Principles &bull; Form Usability Case Study &amp; UX Evaluation</span>
+        <span class="tag-pill">Page 21 of 24</span>
+      </div>
+    </div>
+    
+    <div class="page">
+      <div class="running-header">
+        <div class="brand">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          <span>KnowledgeHub Curriculum</span>
+        </div>
+        <div>Unit 4 &bull; 3.2.4 Web Accessibility (a11y)</div>
+      </div>
+
+      <div class="unit-badge">Module 3.2.4 &bull; Inclusive Design</div>
+      <h2 class="section-title">Web Accessibility: Core Concepts &amp; Practices</h2>
+
+      <div class="card card-tinted">
+        <h3 class="subsection-title">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+          What is Web Accessibility?
+        </h3>
+        <p style="font-size:13px; color:#334155; line-height:1.5;">
+          <strong>Web accessibility</strong> means designing and developing websites so that people with disabilities can perceive, understand, navigate, and interact with them.
+        </p>
+        <p style="font-size:12.5px; color:#64748b; margin-top:3px;">
+          Accessibility can benefit people using screen readers, keyboards, voice input, captions, magnification, or other assistive technologies.
+        </p>
+      </div>
+
+      <div class="definition-box">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+        <span><strong>Simple Definition:</strong> Web accessibility = Making websites usable by people with a wide range of abilities</span>
+      </div>
+
+      <h3 class="subsection-title" style="margin-top: 8px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+        Why is Accessibility Important?
+      </h3>
+
+      <div class="grid-2">
+        <div class="card card-emerald">
+          <strong style="color:#047857; font-size:12.5px;">1. Digital Inclusivity</strong>
+          <p style="font-size:11.8px; color:#334155;">Makes digital content accessible to all citizens regardless of physical ability.</p>
+        </div>
+        <div class="card card-blue">
+          <strong style="color:#1d4ed8; font-size:12.5px;">2. Assistive Tech Support</strong>
+          <p style="font-size:11.8px; color:#334155;">Enables blind, motor-impaired, and low-vision users to browse independently.</p>
+        </div>
+        <div class="card card-purple">
+          <strong style="color:#6d28d9; font-size:12.5px;">3. Universal Clarity</strong>
+          <p style="font-size:11.8px; color:#334155;">Improves clarity, readability, and overall usability for every visitor on all devices.</p>
+        </div>
+        <div class="card card-amber">
+          <strong style="color:#92400e; font-size:12.5px;">4. Legal &amp; Regulatory Compliance</strong>
+          <p style="font-size:11.8px; color:#334155;">Helps organizations meet applicable accessibility laws and university guidelines.</p>
+        </div>
+      </div>
+
+      <h3 class="subsection-title" style="margin-top: 8px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+        Common Accessibility Practices (Practices 1 to 4)
+      </h3>
+
+      <div class="card card-tinted" style="margin-bottom:6px;">
+        <strong style="color:#0f172a; font-size:12.5px;">1. Use Semantic HTML</strong>
+        <p style="font-size:12px; color:#475569; margin:2px 0 4px 0;">
+          Use elements according to their meaning, such as <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;button&gt;</code>, and <code>&lt;footer&gt;</code>.
+        </p>
+        <div class="code-container" style="margin:2px 0;">
+          <pre><span class="punct">&lt;</span><span class="tag">main</span><span class="punct">&gt;</span>
+  <span class="punct">&lt;</span><span class="tag">h1</span><span class="punct">&gt;</span>Student Portal<span class="punct">&lt;/</span><span class="tag">h1</span><span class="punct">&gt;</span>
+  <span class="punct">&lt;</span><span class="tag">button</span> <span class="attr">type</span>=<span class="str">"button"</span><span class="punct">&gt;</span>View Profile<span class="punct">&lt;/</span><span class="tag">button</span><span class="punct">&gt;</span>
+<span class="punct">&lt;/</span><span class="tag">main</span><span class="punct">&gt;</span></pre>
+        </div>
+        <span style="font-size:11px; color:#2563eb; font-weight:700;">Prefer a real &lt;button&gt; for actions instead of a clickable &lt;div&gt;.</span>
+      </div>
+
+      <div class="grid-3">
+        <div class="card card-tinted">
+          <strong style="color:#0f172a; font-size:12px;">2. Alternative Text</strong>
+          <p style="font-size:11px; color:#64748b;">Provide descriptive <code>alt="..."</code> for images; use empty <code>alt=""</code> for decorative art.</p>
+        </div>
+        <div class="card card-tinted">
+          <strong style="color:#0f172a; font-size:12px;">3. Label Form Controls</strong>
+          <p style="font-size:11px; color:#64748b;">Explicit <code>&lt;label for="..."&gt;</code> tags. Placeholders are never replacements for labels.</p>
+        </div>
+        <div class="card card-tinted">
+          <strong style="color:#0f172a; font-size:12px;">4. Keyboard Navigation</strong>
+          <p style="font-size:11px; color:#64748b;">Support Tab/Enter. Never remove visible focus indicators without accessible alternatives.</p>
+        </div>
+      </div>
+
+      <div class="running-footer">
+        <span>3.2.4 Web Accessibility &bull; Definitions, Importance &amp; Practices 1&ndash;4</span>
+        <span class="tag-pill">Page 22 of 24</span>
+      </div>
+    </div>
+    
+    <div class="page">
+      <div class="running-header">
+        <div class="brand">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          <span>KnowledgeHub Curriculum</span>
+        </div>
+        <div>Unit 4 &bull; 3.2.4 Accessible Design &amp; Forms</div>
+      </div>
+
+      <div class="unit-badge">Module 3.2.4 &bull; Inclusive Coding</div>
+      <h2 class="section-title">Accessible Contrast, Heading Order &amp; Form Architecture</h2>
+
+      <h3 class="subsection-title">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+        Common Accessibility Practices (Practices 5 to 8)
+      </h3>
+
+      <div class="grid-2">
+        <div class="card card-tinted">
+          <strong style="color:#0f172a; font-size:12.5px;">5. Use Sufficient Color Contrast</strong>
+          <p style="font-size:12px; color:#475569; margin-top:2px;">
+            Text and interactive controls should have enough contrast against their backgrounds. Do not communicate information through color alone (e.g. combine color with icons or text badges).
+          </p>
+        </div>
+
+        <div class="card card-tinted">
+          <strong style="color:#0f172a; font-size:12.5px;">6. Use Headings in a Meaningful Order</strong>
+          <p style="font-size:12px; color:#475569; margin-top:2px;">
+            Headings should describe the logical page structure rather than being selected only for visual font size.
+          </p>
+          <div class="code-container" style="margin:3px 0 0 0;">
+            <pre><span class="punct">&lt;</span><span class="tag">h1</span><span class="punct">&gt;</span>Web Development<span class="punct">&lt;/</span><span class="tag">h1</span><span class="punct">&gt;</span>
+<span class="punct">&lt;</span><span class="tag">h2</span><span class="punct">&gt;</span>Accessibility<span class="punct">&lt;/</span><span class="tag">h2</span><span class="punct">&gt;</span>
+<span class="punct">&lt;</span><span class="tag">h3</span><span class="punct">&gt;</span>Keyboard Navigation<span class="punct">&lt;/</span><span class="tag">h3</span><span class="punct">&gt;</span></pre>
+          </div>
+        </div>
+
+        <div class="card card-tinted">
+          <strong style="color:#0f172a; font-size:12.5px;">7. Add Captions to Important Video Content</strong>
+          <p style="font-size:12px; color:#475569; margin-top:2px;">
+            Captions help people who are deaf or hard of hearing and can also help users watching multimedia in noisy environments or without sound.
+          </p>
+        </div>
+
+        <div class="card card-tinted">
+          <strong style="color:#0f172a; font-size:12.5px;">8. Make Error Messages Clear</strong>
+          <p style="font-size:12px; color:#475569; margin-top:2px;">
+            Explain what went wrong and how to correct it. Where possible, identify the affected form field explicitly in text.
+          </p>
+        </div>
+      </div>
+
+      <h3 class="subsection-title" style="margin-top: 8px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+        Accessibility Example: Form Architecture
+      </h3>
+
+      <div class="code-container">
+        <div class="code-header">
+          <div class="code-dots"><div class="code-dot dot-red"></div><div class="code-dot dot-yellow"></div><div class="code-dot dot-green"></div></div>
+          <span>HTML &bull; Fully Accessible Registration Form</span>
+        </div>
+        <pre><span class="punct">&lt;</span><span class="tag">form</span><span class="punct">&gt;</span>
+  <span class="punct">&lt;</span><span class="tag">div</span><span class="punct">&gt;</span>
+    <span class="punct">&lt;</span><span class="tag">label</span> <span class="attr">for</span>=<span class="str">"fullName"</span><span class="punct">&gt;</span>Full name<span class="punct">&lt;/</span><span class="tag">label</span><span class="punct">&gt;</span>
+    <span class="punct">&lt;</span><span class="tag">input</span> <span class="attr">id</span>=<span class="str">"fullName"</span> <span class="attr">name</span>=<span class="str">"fullName"</span> <span class="attr">type</span>=<span class="str">"text"</span> <span class="attr">required</span><span class="punct">&gt;</span>
+  <span class="punct">&lt;/</span><span class="tag">div</span><span class="punct">&gt;</span>
+  <span class="punct">&lt;</span><span class="tag">div</span><span class="punct">&gt;</span>
+    <span class="punct">&lt;</span><span class="tag">label</span> <span class="attr">for</span>=<span class="str">"emailAddress"</span><span class="punct">&gt;</span>Email address<span class="punct">&lt;/</span><span class="tag">label</span><span class="punct">&gt;</span>
+    <span class="punct">&lt;</span><span class="tag">input</span> <span class="attr">id</span>=<span class="str">"emailAddress"</span> <span class="attr">name</span>=<span class="str">"emailAddress"</span> <span class="attr">type</span>=<span class="str">"email"</span> <span class="attr">required</span><span class="punct">&gt;</span>
+  <span class="punct">&lt;/</span><span class="tag">div</span><span class="punct">&gt;</span>
+  <span class="punct">&lt;</span><span class="tag">button</span> <span class="attr">type</span>=<span class="str">"submit"</span><span class="punct">&gt;</span>Register<span class="punct">&lt;/</span><span class="tag">button</span><span class="punct">&gt;</span>
+<span class="punct">&lt;/</span><span class="tag">form</span><span class="punct">&gt;</span></pre>
+      </div>
+
+      <div class="card card-emerald" style="margin-top: 4px;">
+        <strong style="color:#047857; font-size:12.5px;">Programmatic Association &amp; Production Guidance:</strong>
+        <p style="font-size:12.3px; color:#334155; margin-top:2px;">
+          The labels are programmatically associated with their inputs via <code>for="id"</code>, and required fields are identified with semantic <code>required</code> attributes. A production form should also display accessible instructions and live error messages when validation fails.
+        </p>
+      </div>
+
+      <div class="running-footer">
+        <span>3.2.4 Web Accessibility &bull; Practices 5&ndash;8 &amp; Accessible Form Implementation</span>
+        <span class="tag-pill">Page 23 of 24</span>
+      </div>
+    </div>
+    
+    <div class="page">
+      <div class="running-header">
+        <div class="brand">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          <span>KnowledgeHub Curriculum</span>
+        </div>
+        <div>Unit 4 &bull; 3.2.4 WCAG Guidelines &amp; Audit Checklist</div>
+      </div>
+
+      <div class="unit-badge">Module 3.2.4 &bull; International Standards</div>
+      <h2 class="section-title">WCAG Guidelines &amp; Accessibility Audit Checklist</h2>
+
+      <h3 class="subsection-title">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+        Accessibility Testing Checklist (8-Point Audit)
+      </h3>
+
+      <div class="card card-tinted" style="padding:8px 12px; margin-bottom:6px;">
+        <ul class="bullet-list check-list" style="margin:0;">
+          <li>Can all interactive controls be used with a keyboard?</li>
+          <li>Is keyboard focus clearly visible with high-contrast outlines?</li>
+          <li>Do informative images have appropriate alternative text?</li>
+          <li>Are form fields programmatically associated with visible labels?</li>
+          <li>Is the content readable with sufficient color contrast?</li>
+          <li>Are headings and semantic landmarks structured meaningfully?</li>
+          <li>Are errors clearly explained in text with recovery paths?</li>
+          <li>Has the page been checked with automated tools and assistive technologies?</li>
+        </ul>
+      </div>
+
+      <h3 class="subsection-title" style="margin-top: 6px;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+        WCAG: The Four Core Principles (POUR)
+      </h3>
+
+      <div class="card card-blue" style="padding:6px 10px; margin-bottom:6px;">
+        <p style="font-size:12.3px; color:#1e293b;">
+          <strong>WCAG</strong> stands for <strong>Web Content Accessibility Guidelines</strong>. It provides internationally used guidance for making web content more accessible. Its four core principles are often summarized as <strong>POUR</strong>:
+        </p>
+      </div>
+
+      <table class="custom-table">
+        <thead>
+          <tr>
+            <th style="width: 25%;">Principle</th>
+            <th>Meaning &amp; Engineering Requirement</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong style="color:#2563eb; font-size:12.5px;">P &bull; Perceivable</strong></td>
+            <td>Users can perceive the information (content cannot be invisible to all user senses).</td>
+          </tr>
+          <tr>
+            <td><strong style="color:#059669; font-size:12.5px;">O &bull; Operable</strong></td>
+            <td>Users can operate the interface (interface cannot require interaction a user cannot perform).</td>
+          </tr>
+          <tr>
+            <td><strong style="color:#d97706; font-size:12.5px;">U &bull; Understandable</strong></td>
+            <td>Content and behavior are understandable (users must comprehend info and operations).</td>
+          </tr>
+          <tr>
+            <td><strong style="color:#7c3aed; font-size:12.5px;">R &bull; Robust</strong></td>
+            <td>Content works reliably across different browsers, screen readers, and assistive technologies.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="card card-amber" style="margin-top: 6px;">
+        <strong style="color:#92400e; font-size:12px;">Auditing Best Practice:</strong>
+        <p style="font-size:12px; color:#78350f; margin-top:2px;">
+          Automated tools can find some accessibility problems, but they cannot identify every issue. Manual keyboard testing and testing with assistive technologies are also valuable.
+        </p>
+      </div>
+
+      <div class="experience-card" style="margin-top: 6px; padding:8px 12px;">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <h4 style="color:#38bdf8; font-size:13px; margin:0;">Unit 4 Modern Web Development Tools Mastery Complete</h4>
+            <span style="font-size:11.5px; color:#94a3b8;">Full curriculum completed: Bootstrap, Git/GitHub, DevTools, Debugging, AJAX, JSON, APIs, UI/UX &amp; Accessibility</span>
+          </div>
+          <span class="badge badge-emerald" style="font-size:11px; padding:3px 8px;">Mastery Certified</span>
+        </div>
+      </div>
+
+      <div class="running-footer">
+        <span>3.2.4 Web Accessibility &bull; WCAG Audit &amp; POUR Principles Completion</span>
+        <span class="tag-pill">Page 24 of 24</span>
+      </div>
+    </div>
+    
+</body>
+</html>
